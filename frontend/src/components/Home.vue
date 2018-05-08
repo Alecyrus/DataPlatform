@@ -4,24 +4,24 @@
     <section style="margin-top:16em;">
   
       <Row type="flex" justify="start">
-        <Col span="12" align="left" offset="4">
+        <Col span="12" align="left" offset="5">
         <p class="titlewords">{{t1}}</p>
         </Col>
       </Row>
       <Row type="flex" justify="start">
-        <Col span="12" align="left" offset="4">
+        <Col span="12" align="left" offset="5">
         <p class="titlewords">{{t2}}</p>
         </Col>
       </Row>
       <Row type="flex" justify="start">
-        <Col span="12" align="left" offset="4">
+        <Col span="12" align="left" offset="5">
         <p class="titlewords">{{t3}}</p>
         </Col>
       </Row>
   
   
       <Row type="flex" align="middle" justify="start" style="margin-top:3em;">
-        <Col span="8" align="left" offset="4">
+        <Col span="8" align="left" offset="5">
         <input autocomplete="off" spellcheck="false" type="text" placeholder="输入IPv4地址或域名字符串" class="ivu-input shadow search ivu-input-large">
         </input>
         </Col>
@@ -137,7 +137,7 @@
   
   .titlewords {
     color: white;
-    opacity: 0.9;
+    opacity: 0.8;
     font-size: 3.8em;
     font-weight: bolder;
   }
