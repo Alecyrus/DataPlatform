@@ -15,6 +15,10 @@ import IEcharts from 'vue-echarts-v3/src/full.js';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import '../mytheme/index.less';
+import Carousel3d from 'vue-carousel-3d';
+
+Vue.use(Carousel3d);
+
 
 //import VueParticles from 'vue-particles';
 //Vue.use(VueParticles)
@@ -22,7 +26,7 @@ Vue.use(iView);
 Vue.prototype.$request = axios;
 Vue.use(VueLocalStorage);
 Vue.config.productionTip = false;
-require('vue2-animate/dist/vue2-animate.min.css');
+require('vue2-animate/dist/vue2-animate.min.css')
 
 new Vue({
   el: '#app',

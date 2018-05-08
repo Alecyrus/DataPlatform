@@ -3,19 +3,19 @@
   
   
     <section>
-      <img class="background" src="../assets/back1.jpg" alt="">
+      <img class="background" src="../assets/back2.jpg" alt="">
     </section>
   
-    <section style="margin:0.6em 0.6em 0em 0.6em;">
-      <Affix>
+    <section style="margin:0.6em 3em 0em 3em;">
+      <Affix :offset-top="10">
         <Menu style="opacity:0.6;
                           box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .04);
                           transparent;border-radius:4px" ref="mainMenu" mode="horizontal" theme="light" :active-name="activeMenu" @on-select="handleMenuSelect">
           <div class="layout-logo">
-            <p style="font-size:1.9em;margin-left:20px;color:#222;font-family:STSong;font-weight:bolder;user-select:none;">SpringX</p>
+            <p style="font-size:1.9em;margin-left:20px;color:#222;;font-weight:bolder;user-select:none;"> <i> SpringX</i></p>
           </div>
           <div class="layout-nav">
-            <MenuItem name="/home"> 首页
+            <MenuItem name="/"> 首页
             </MenuItem>
             <MenuItem name="/help"> 帮助
             </MenuItem>
@@ -27,8 +27,12 @@
       </Affix>
   
     </section>
-    <router-view></router-view>
-  
+
+    
+
+     <transition name="fadeDown" mode="out-in">
+          <router-view></router-view>
+     </transition>
   
   
   
@@ -37,7 +41,7 @@
       <Row type="flex" justify="center" class="copy">
         <Col span="12">
         <p class="shadow copy-text">Copyright © 2018
-          <Tooltip transfer="true" content="点击进入后台管理页面" placement="top-end">
+          <Tooltip content="点击进入后台管理页面" placement="top-end">
             <b class="adminbutton" @click="setAdminShow()">SpringX</b>
           </Tooltip> All rights reserved.
   

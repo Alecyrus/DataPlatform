@@ -22,12 +22,12 @@
   
       <Row type="flex" align="middle" justify="start" style="margin-top:3em;">
         <Col span="8" align="left" offset="5">
-        <input autocomplete="off" spellcheck="false" type="text" placeholder="输入IPv4地址或域名字符串" class="ivu-input shadow search ivu-input-large">
+        <input autocomplete="off" v-model="searchKeywords" spellcheck="false" type="text" placeholder="输入IPv4地址或域名字符串" class="ivu-input shadow search ivu-input-large">
         </input>
         </Col>
   
         <Col span="2" align="center">
-        <Button type="primary" style="opacity:0.8;" class="shadow" size="large" shape="circle" icon="ios-search">  Search</Button>
+        <Button type="primary" style="opacity:0.8;" class="shadow" size="large" shape="circle" icon="ios-search" @click="search" > Search</Button>
         </Col>
       </Row>
     </section>
@@ -41,7 +41,8 @@
       <div class="desc">
   
   
-        <Carousel autoplay :autoplay-speed="2000" :radius-dot="true" loop> 
+  
+        <Carousel autoplay :autoplay-speed="5000" :radius-dot="true" loop>
           <CarouselItem>
             <Row type="flex" align="middle" justify="start" style="margin-top:1em;">
               <Col span="6" align="center" offset="6">
@@ -52,7 +53,7 @@
   
               <Row type="flex" align="middle" justify="start" style="margin-top:4em;">
                 <Col span="8" align="left">
-                <p style="font-size:2.8em;text-shadow: black 0.1em 0.1em 1em;">什么是 <i><strong>SpringX</strong></i> </p>
+                <p style="font-size:2.8em;text-shadow: black 0.1em 0.1em 1.5em;">什么是 <i><strong>SpringX</strong></i> </p>
                 </Col>
               </Row>
   
@@ -67,7 +68,7 @@
               </Col>
             </Row>
           </CarouselItem>
-          <CarouselItem  >
+          <CarouselItem>
             <Row type="flex" align="middle" justify="start" style="margin-top:1em;">
               <Col span="6" align="center" offset="6">
               <Icon size="160" type="cube"></Icon>
@@ -77,7 +78,7 @@
   
               <Row type="flex" align="middle" justify="start" style="margin-top:4em;">
                 <Col span="8" align="left">
-                <p style="font-size:2.8em;text-shadow: black 0.1em 0.1em 1em;"><i><strong>SpringX</strong></i>的能力 </p>
+                <p style="font-size:2.8em;text-shadow: black 0.1em 0.1em 1.5em;"><i><strong>SpringX </strong></i>的能力 </p>
                 </Col>
               </Row>
   
@@ -99,18 +100,7 @@
       </div>
   
     </section>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
   </div>
 </template>
 
@@ -122,7 +112,12 @@
         t2: '庞大的互联网公钥基础设施',
         t3: '的每一个角落',
         desc: "",
-        search: "",
+        searchKeywords: "",
+      }
+    },
+    methods: {
+      search() {
+        this.$router.push({ path: 'results', query: { keywords: this.searchKeywords }})
       }
     }
   }
