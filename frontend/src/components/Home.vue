@@ -41,7 +41,7 @@
       <div class="desc">
   
   
-        <Carousel autoplay :autoplay-speed="2000" :radius-dot="1" loop> 
+        <Carousel autoplay :autoplay-speed="2000" :radius-dot="true" loop> 
           <CarouselItem>
             <Row type="flex" align="middle" justify="start" style="margin-top:1em;">
               <Col span="6" align="center" offset="6">
@@ -52,7 +52,7 @@
   
               <Row type="flex" align="middle" justify="start" style="margin-top:4em;">
                 <Col span="8" align="left">
-                <p style="font-size:2.8em;">什么是 <i><strong>SpringX</strong></i> </p>
+                <p style="font-size:2.8em;text-shadow: black 0.1em 0.1em 1em;">什么是 <i><strong>SpringX</strong></i> </p>
                 </Col>
               </Row>
   
@@ -77,7 +77,7 @@
   
               <Row type="flex" align="middle" justify="start" style="margin-top:4em;">
                 <Col span="8" align="left">
-                <p style="font-size:2.8em;"><i><strong>SpringX</strong></i>的能力 </p>
+                <p style="font-size:2.8em;text-shadow: black 0.1em 0.1em 1em;"><i><strong>SpringX</strong></i>的能力 </p>
                 </Col>
               </Row>
   
@@ -140,6 +140,7 @@
     opacity: 0.8;
     font-size: 3.8em;
     font-weight: bolder;
+    text-shadow: black 0.1em 0.1em 1.5em;
   }
   
   .search {
@@ -149,7 +150,7 @@
   .desc {
     background-color: #fff;
     opacity: 0.6;
-    margin: 14em 0.8em 0em 0.8em;
+    margin: 12em 0.8em 0em 0.8em;
     border-radius: 4px;
   }
 </style>

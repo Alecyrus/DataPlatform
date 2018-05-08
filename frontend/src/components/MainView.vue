@@ -9,17 +9,17 @@
     <section style="margin:0.6em 0.6em 0em 0.6em;">
       <Affix>
         <Menu style="opacity:0.6;
-                    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .04);
-                    transparent;border-radius:4px" ref="mainMenu" mode="horizontal" theme="light" :active-name="activeMenu" @on-select="handleMenuSelect">
+                          box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .04);
+                          transparent;border-radius:4px" ref="mainMenu" mode="horizontal" theme="light" :active-name="activeMenu" @on-select="handleMenuSelect">
           <div class="layout-logo">
-            <p style="font-size:1.9em;margin-left:20px;color:#222;font-family:STSong;font-weight:bolder;">SpringX</p>
+            <p style="font-size:1.9em;margin-left:20px;color:#222;font-family:STSong;font-weight:bolder;user-select:none;">SpringX</p>
           </div>
           <div class="layout-nav">
-            <MenuItem name="/"> 首页
+            <MenuItem name="/home"> 首页
             </MenuItem>
-            <MenuItem name="/"> 帮助
+            <MenuItem name="/help"> 帮助
             </MenuItem>
-            <MenuItem name="/"> 关于
+            <MenuItem name="/about"> 关于
             </MenuItem>
           </div>
         </Menu>
@@ -27,11 +27,24 @@
       </Affix>
   
     </section>
-  
-  
-  
-  
     <router-view></router-view>
+  
+  
+  
+  
+  
+    <section>
+      <Row type="flex" justify="center" class="copy">
+        <Col span="12">
+        <p class="shadow copy-text">Copyright © 2018
+          <Tooltip transfer="true" content="点击进入后台管理页面" placement="top-end">
+            <b class="adminbutton" @click="setAdminShow()">SpringX</b>
+          </Tooltip> All rights reserved.
+  
+        </p>
+        </Col>
+      </Row>
+    </section>
   </div>
 </template>
 
@@ -40,11 +53,27 @@
     data() {
       return {
         activeMenu: '',
+        adminlogin: false,
+        // backpath: "../assets/back1.jpg",
       }
     },
-    methods:{
+    mounted() {
+      // let index = 1;
+      // setInterval(() => {
+      //   this.backpath = "../assets/" + "back"+index+".jpg";
+      //   this.$Message.success(this.backpath);
+      //   index += 1;
+      //   index  = index % 5;
+      // }, 20000);
+    },
+    methods: {
       handleMenuSelect() {
-         this.$router.push(arguments[0]);
+        this.$router.push(arguments[0]);
+      },
+      setAdminShow() {
+        this.adminlogin = true;
+        this.$Message.success('已初始化后台管理系统');
+  
       }
     }
   }
@@ -52,6 +81,26 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .adminbutton {
+    transition: all ease-in-out 0.3s;
+  }
+  
+  .adminbutton:hover {
+    color: #999;
+    text-shadow: black 0.2em 0.2em 2em;
+  }
+  
+  .copy {
+    margin-top: 2em;
+  }
+  
+  .copy-text {
+    color: aliceblue;
+    opacity: 0.7;
+    user-select: none;
+    text-shadow: black 0.1em 0.1em 0.6em;
+  }
+  
   .background {
     position: fixed;
     right: 0;
@@ -78,12 +127,12 @@
     float: left;
     position: relative;
     /* top: 15px;
-      left: 20px; */
+            left: 20px; */
     /*    -webkit-filter: blur(20px);
-      -moz-filter: blur(2px);
-      -ms-filter: blur(2px);
-      -o-filter: blur(2px);
-      filter: blur(15px);    */
+            -moz-filter: blur(2px);
+            -ms-filter: blur(2px);
+            -o-filter: blur(2px);
+            filter: blur(15px);    */
   }
   
   .layout-nav {
