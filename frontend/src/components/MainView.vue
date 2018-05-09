@@ -3,7 +3,7 @@
   
   
     <section>
-      <img class="background" src="../assets/back2.jpg" alt="">
+      <img class="background" src="../assets/back1.jpg" alt="">
     </section>
   
     <section style="margin:0.6em 3em 0em 3em;">
@@ -11,8 +11,8 @@
         <Menu style="opacity:0.6;
                           box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .04);
                           transparent;border-radius:4px" ref="mainMenu" mode="horizontal" theme="light" :active-name="activeMenu" @on-select="handleMenuSelect">
-          <div class="layout-logo">
-            <p style="font-size:1.9em;margin-left:20px;color:#222;;font-weight:bolder;user-select:none;"> <i> SpringX</i></p>
+          <div class="layout-logo" align="center">
+            <p style="font-size:1.9em;margin-left:20px;color:#222;;font-weight:bolder;user-select:none;"><Icon  size="38" style="margin-top:10px;"  type="ios-flower-outline"></Icon> <i> SpringX</i></p>
           </div>
           <div class="layout-nav">
             <MenuItem name="/"> 首页
