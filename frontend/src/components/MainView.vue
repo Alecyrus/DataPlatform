@@ -3,31 +3,31 @@
   
   
     <section>
-      <img class="background" src="../assets/back1.jpg" alt="">
+      <img class="background" src="../assets/4.jpg" alt="">
     </section>
   
     <section style="margin:0.6em 3em 0em 3em;">
       <Affix :offset-top="10">
         <Menu style="opacity:0.6;
-                                box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .04);
-                                transparent;border-radius:4px" ref="mainMenu" mode="horizontal" theme="light" :active-name="activeMenu" @on-select="handleMenuSelect">
+                                    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .04);
+                                    transparent;border-radius:4px" ref="mainMenu" mode="horizontal" theme="light" :active-name="activeMenu" @on-select="handleMenuSelect">
           <div class="layout-logo" align="center">
-            
-
-           <Row type="flex" justify="start" align="top" >
-              <Col span="5" offset="6" align="center" >
-              <Icon size="38"   color="black" style="margin-top:12px;opacity:0.8;"  type="ios-flower-outline"></Icon>
-            </Col>
-            <Col span="12" align="left" >
-              <p style="font-size:1.9em;color:#222;;font-weight:bolder;user-select:none;font-family:"> <i> SpringX</i>  </p>
-            </Col>
-            
-          </Row>
-
-
-
-          
-            
+  
+  
+            <Row type="flex" justify="start" align="top">
+              <Col span="5" offset="6" align="center">
+              <Icon size="38" color="black" style="margin-top:12px;opacity:0.8;" type="ios-flower-outline"></Icon>
+              </Col>
+              <Col span="12" align="left">
+              <p style="font-size:1.9em;color:#222;;font-weight:bolder;user-select:none;font-family:"> <i> SpringX</i> </p>
+              </Col>
+  
+            </Row>
+  
+  
+  
+  
+  
           </div>
           <div class="layout-nav">
             <MenuItem name="/"> 首页
@@ -70,42 +70,55 @@
   
     <section>
   
-      <Modal :transition-names="trans" style="opacity:0.7;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .2);" v-model="adminlogin">
-        <div >
+      <Modal 
+            :styles="{top: '30%'}" 
+            :transition-names="trans"
+             @on-ok="adminLogin" 
+             @on-cancel="cancelLogin" 
+             :width="400"
+             style="opacity:0.65;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .2);" 
+             v-model="adminlogin">
+        <div>
   
-          <Row type="flex" justify="start" >
+          <Row type="flex" justify="start">
             <Col span="12" align="left">
-             <p style="text-shadow: black 0.1em 0.1em 0.9em;font-size:2em">后台管理登录</p>
-            </Col>
-          </Row>
-
-
-            <!-- <Row type="flex" align="top" justify="left" style="margin-top:0em;">
-                  <Col span="22" align="left" style="margin-top:0em;" offset="0">
-                  <hr style="height:1px;border:none;border-top:1px solid grey;
-                                          margin:1em 0em 1em 0em;
-                                          width:90%;opacity:0.5;
-                                          border-radius:1px;
-                                          box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
-                                          " />
-                  </Col>
-                </Row> -->
-
-           <Row type="flex" justify="start" style="min-height:50px;background-color:grey">
-            <Col span="12" align="left" style="background-color:#aaa">
-             <p style="text-shadow: black 0.1em 0.1em 0.9em;font-size:2em">后台管理登录</p>
+            <p style="text-shadow: grey 0.1em 0.1em 0.9em;font-size:2em;user-select:none">后台管理登录</p>
             </Col>
           </Row>
   
+          <Row type="flex" justify="center" style="margin-top:4em;;">
+            <Col span="16" align="center" offset="" style="">
+  
+  
+            <Form ref="adminlogin" :model="adminInfo" :rules="ruleInline" inline>
+              <FormItem prop="user">
+                <Input size="large" type="text" style="width:250px;" v-model="adminInfo.username" placeholder="账号">
+                <Icon type="person" slot="prepend"></Icon>
+                </Input>
+              </FormItem>
+              <FormItem prop="password">
+                <Input size="large" type="password" style="width:250px;" v-model="adminInfo.password" placeholder="口令">
+                <Icon type="android-lock" slot="prepend"></Icon>
+                </Input>
+              </FormItem>
+              <!-- <FormItem>
+                  <Button type="primary" @click="handleSubmit('adminlogin')">Signin</Button>
+                </FormItem> -->
+            </Form>
+  
+  
+            </Col>
+          </Row>
   
   
   
-         
+  
+  
   
         </div>
   
   
-       
+  
       </Modal>
   
     </section>
@@ -118,7 +131,25 @@
       return {
         activeMenu: '',
         adminlogin: false,
-        trans: ['zoom', "fade"]
+        trans: ['zoom', "fade"],
+        adminInfo: {
+          username: "",
+          password: ""
+        },
+        ruleInline: {
+          username: [{
+            required: true,
+            message: 'Please fill in the user name',
+            trigger: 'blur'
+          }],
+          password: [{
+              required: true,
+              message: 'Please fill in the password.',
+              trigger: 'blur'
+            },
+            // { type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+          ]
+        }
         // backpath: "../assets/back1.jpg",
       }
     },
@@ -131,13 +162,55 @@
       //   index  = index % 5;
       // }, 20000);
     },
+    watch: {
+      // 如果 `question` 发生改变，这个函数就会运行
+      adminlogin: function(newQuestion, oldQuestion) {
+  
+        // this.$toast.error("asdasd", 'Error', {
+        //       position: "topCenter"
+        //     });
+        if (oldQuestion) {
+          this.adminInfo.username = "";
+          this.adminInfo.password = "";
+          this.$refs['adminlogin'].resetFields();
+  
+        }
+  
+      }
+  
+    },
     methods: {
+      adminLogin() {
+
+        // this.$toast.success('已初始化后台管理系统', 'Success', {
+        //   position: "topCenter"
+        // });
+        this.$toast.error('尚未开放,敬请期待', 'Error', {
+            position: "topCenter"
+          });
+  
+      },
+      cancelLogin() {
+  
+        this.adminInfo.username = "";
+        this.adminInfo.password = "";
+        this.$refs['adminlogin'].resetFields();
+  
+      },
       handleMenuSelect() {
-        this.$router.push(arguments[0]);
+        if (arguments[0] != "/") {
+          this.$toast.error('尚未开放,敬请期待', 'Error', {
+            position: "topCenter"
+          });
+  
+        } else {
+          this.$router.push(arguments[0]);
+        }
+  
       },
       setAdminShow() {
         this.adminlogin = true;
-        this.$Message.success('已初始化后台管理系统');
+        
   
       }
     }
@@ -180,13 +253,10 @@
     position: fixed;
     right: 0;
     bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    height: auto;
+    width: 100%;
     z-index: -100;
     -webkit-filter: blur(5px);
     filter: blur(15px);
-    width: auto;
   }
   
   .layout-logo-in {
@@ -202,12 +272,12 @@
     float: left;
     position: relative;
     /* top: 15px;
-                  left: 20px; */
+                      left: 20px; */
     /*    -webkit-filter: blur(20px);
-                  -moz-filter: blur(2px);
-                  -ms-filter: blur(2px);
-                  -o-filter: blur(2px);
-                  filter: blur(15px);    */
+                      -moz-filter: blur(2px);
+                      -ms-filter: blur(2px);
+                      -o-filter: blur(2px);
+                      filter: blur(15px);    */
   }
   
   .layout-nav {
