@@ -15,9 +15,17 @@ import IEcharts from 'vue-echarts-v3/src/full.js';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import '../mytheme/index.less';
-import Carousel3d from 'vue-carousel-3d';
 
-Vue.use(Carousel3d);
+import VueIziToast from 'vue-izitoast';
+
+
+import 'izitoast/dist/css/iziToast.min.css';
+
+Vue.use(VueIziToast);
+
+
+
+
 
 
 //import VueParticles from 'vue-particles';

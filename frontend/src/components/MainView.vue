@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div v-bind:class="{ backgroundac: adminlogin,backgroundacde: !adminlogin }">
   
   
     <section>
@@ -9,10 +9,25 @@
     <section style="margin:0.6em 3em 0em 3em;">
       <Affix :offset-top="10">
         <Menu style="opacity:0.6;
-                          box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .04);
-                          transparent;border-radius:4px" ref="mainMenu" mode="horizontal" theme="light" :active-name="activeMenu" @on-select="handleMenuSelect">
+                                box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .04);
+                                transparent;border-radius:4px" ref="mainMenu" mode="horizontal" theme="light" :active-name="activeMenu" @on-select="handleMenuSelect">
           <div class="layout-logo" align="center">
-            <p style="font-size:1.9em;margin-left:20px;color:#222;;font-weight:bolder;user-select:none;"><Icon  size="38" style="margin-top:10px;"  type="ios-flower-outline"></Icon> <i> SpringX</i></p>
+            
+
+           <Row type="flex" justify="start" align="top" >
+              <Col span="5" offset="6" align="center" >
+              <Icon size="38"   color="black" style="margin-top:12px;opacity:0.8;"  type="ios-flower-outline"></Icon>
+            </Col>
+            <Col span="12" align="left" >
+              <p style="font-size:1.9em;color:#222;;font-weight:bolder;user-select:none;font-family:"> <i> SpringX</i>  </p>
+            </Col>
+            
+          </Row>
+
+
+
+          
+            
           </div>
           <div class="layout-nav">
             <MenuItem name="/"> 首页
@@ -27,12 +42,12 @@
       </Affix>
   
     </section>
-
-    
-
-     <transition name="fadeDown" mode="out-in">
-          <router-view></router-view>
-     </transition>
+  
+  
+  
+    <transition name="fadeDown" mode="out-in">
+      <router-view></router-view>
+    </transition>
   
   
   
@@ -49,6 +64,51 @@
         </Col>
       </Row>
     </section>
+  
+  
+  
+  
+    <section>
+  
+      <Modal :transition-names="trans" style="opacity:0.7;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .2);" v-model="adminlogin">
+        <div >
+  
+          <Row type="flex" justify="start" >
+            <Col span="12" align="left">
+             <p style="text-shadow: black 0.1em 0.1em 0.9em;font-size:2em">后台管理登录</p>
+            </Col>
+          </Row>
+
+
+            <!-- <Row type="flex" align="top" justify="left" style="margin-top:0em;">
+                  <Col span="22" align="left" style="margin-top:0em;" offset="0">
+                  <hr style="height:1px;border:none;border-top:1px solid grey;
+                                          margin:1em 0em 1em 0em;
+                                          width:90%;opacity:0.5;
+                                          border-radius:1px;
+                                          box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
+                                          " />
+                  </Col>
+                </Row> -->
+
+           <Row type="flex" justify="start" style="min-height:50px;background-color:grey">
+            <Col span="12" align="left" style="background-color:#aaa">
+             <p style="text-shadow: black 0.1em 0.1em 0.9em;font-size:2em">后台管理登录</p>
+            </Col>
+          </Row>
+  
+  
+  
+  
+         
+  
+        </div>
+  
+  
+       
+      </Modal>
+  
+    </section>
   </div>
 </template>
 
@@ -58,6 +118,7 @@
       return {
         activeMenu: '',
         adminlogin: false,
+        trans: ['zoom', "fade"]
         // backpath: "../assets/back1.jpg",
       }
     },
@@ -85,6 +146,16 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .backgroundac {
+    transition: all ease-in-out 0.5s;
+    filter: blur(10px);
+  }
+  
+  .backgroundacde {
+    filter: blur(0px);
+    transition: all ease-in-out 0.2s;
+  }
+  
   .adminbutton {
     transition: all ease-in-out 0.3s;
   }
@@ -131,12 +202,12 @@
     float: left;
     position: relative;
     /* top: 15px;
-            left: 20px; */
+                  left: 20px; */
     /*    -webkit-filter: blur(20px);
-            -moz-filter: blur(2px);
-            -ms-filter: blur(2px);
-            -o-filter: blur(2px);
-            filter: blur(15px);    */
+                  -moz-filter: blur(2px);
+                  -ms-filter: blur(2px);
+                  -o-filter: blur(2px);
+                  filter: blur(15px);    */
   }
   
   .layout-nav {

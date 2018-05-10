@@ -133,6 +133,7 @@
   .titlewords {
     color: white;
     opacity: 0.8;
+    user-select:none;
     font-size: 3.8em;
     font-weight: bolder;
     text-shadow: black 0.1em 0.1em 1.5em;
