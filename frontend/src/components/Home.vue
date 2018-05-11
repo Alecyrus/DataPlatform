@@ -1,5 +1,8 @@
 <template>
   <div>
+
+
+    <transition name="fadeDown" appear>
   
     <section style="margin-top:16em;">
   
@@ -18,6 +21,15 @@
         <p class="titlewords">{{t3}}</p>
         </Col>
       </Row>
+
+
+      </section>
+
+      </transition>
+
+
+<transition name="fade" appear>
+      <section>
   
   
       <Row type="flex" align="middle" justify="start" style="margin-top:3em;">
@@ -33,9 +45,10 @@
     </section>
   
   
+    </transition>
   
   
-  
+  <transition name="fadeLeft" appear>
     <section>
   
       <div class="desc">
@@ -100,6 +113,9 @@
       </div>
   
     </section>
+
+        </transition>
+  
 
   </div>
 </template>

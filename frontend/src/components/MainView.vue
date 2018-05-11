@@ -6,51 +6,56 @@
       <img class="background" src="../assets/4.jpg" alt="">
     </section>
   
-    <section style="margin:0.6em 3em 0em 3em;">
-      <Affix :offset-top="10">
-        <Menu style="opacity:0.6;
-                                    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .04);
-                                    transparent;border-radius:4px" ref="mainMenu" mode="horizontal" theme="light" :active-name="activeMenu" @on-select="handleMenuSelect">
-          <div class="layout-logo" align="center">
+  
+    <transition name="fadeDown" appear>
+      <section style="margin:0.6em 3em 0em 3em;">
+        <Affix :offset-top="10">
+          <Menu style="opacity:0.6;
+                                      box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .04);
+                                      transparent;border-radius:4px" ref="mainMenu" mode="horizontal" theme="light" :active-name="activeMenu" @on-select="handleMenuSelect">
+            <div class="layout-logo" align="center">
   
   
-            <Row type="flex" justify="start" align="top">
-              <Col span="5" offset="6" align="center">
-              <Icon size="38" color="black" style="margin-top:12px;opacity:0.8;" type="ios-flower-outline"></Icon>
-              </Col>
-              <Col span="12" align="left">
-              <p style="font-size:1.9em;color:#222;;font-weight:bolder;user-select:none;font-family:"> <i> SpringX</i> </p>
-              </Col>
+              <Row type="flex" justify="start" align="top">
+                <Col span="5" offset="6" align="center">
+                <Icon size="38" color="black" style="margin-top:12px;opacity:0.8;" type="ios-flower-outline"></Icon>
+                </Col>
+                <Col span="12" align="left">
+                <p style="font-size:1.9em;color:#222;;font-weight:bolder;user-select:none;font-family:"> <i> SpringX</i> </p>
+                </Col>
   
-            </Row>
-  
-  
-  
-  
-  
-          </div>
-          <div class="layout-nav">
-            <MenuItem name="/"> 首页
-            </MenuItem>
-            <MenuItem name="/help"> 帮助
-            </MenuItem>
-            <MenuItem name="/about"> 关于
-            </MenuItem>
-          </div>
-        </Menu>
-  
-      </Affix>
-  
-    </section>
+              </Row>
   
   
   
-    <transition name="fadeDown" mode="out-in">
+  
+  
+            </div>
+            <div class="layout-nav">
+              <MenuItem name="/"> 首页
+              </MenuItem>
+              <MenuItem name="/help"> 帮助
+              </MenuItem>
+              <MenuItem name="/about"> 关于
+              </MenuItem>
+            </div>
+          </Menu>
+  
+        </Affix>
+  
+      </section>
+    </transition>
+  
+  
+  
+  
+    <transition name="fadeUp" mode="out-in">
       <router-view></router-view>
     </transition>
   
   
   
+  <transition name="fadeUp" appear>
   
     <section>
       <Row type="flex" justify="center" class="copy">
@@ -66,18 +71,13 @@
     </section>
   
   
-  
+</transition>
+
+</transition>
   
     <section>
   
-      <Modal 
-            :styles="{top: '30%'}" 
-            :transition-names="trans"
-             @on-ok="adminLogin" 
-             @on-cancel="cancelLogin" 
-             :width="400"
-             style="opacity:0.65;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .2);" 
-             v-model="adminlogin">
+      <Modal :styles="{top: '30%'}" :transition-names="trans" @on-ok="adminLogin" @on-cancel="cancelLogin" :width="400" style="opacity:0.65;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .05), 0px 0px 8px 0px rgba(0, 0, 0, .2);" v-model="adminlogin">
         <div>
   
           <Row type="flex" justify="start">
@@ -102,8 +102,8 @@
                 </Input>
               </FormItem>
               <!-- <FormItem>
-                  <Button type="primary" @click="handleSubmit('adminlogin')">Signin</Button>
-                </FormItem> -->
+                    <Button type="primary" @click="handleSubmit('adminlogin')">Signin</Button>
+                  </FormItem> -->
             </Form>
   
   
@@ -181,13 +181,13 @@
     },
     methods: {
       adminLogin() {
-
+  
         // this.$toast.success('已初始化后台管理系统', 'Success', {
         //   position: "topCenter"
         // });
         this.$toast.error('尚未开放,敬请期待', 'Error', {
-            position: "topCenter"
-          });
+          position: "topCenter"
+        });
   
       },
       cancelLogin() {
@@ -210,7 +210,7 @@
       },
       setAdminShow() {
         this.adminlogin = true;
-        
+  
   
       }
     }
@@ -272,12 +272,12 @@
     float: left;
     position: relative;
     /* top: 15px;
-                      left: 20px; */
+                        left: 20px; */
     /*    -webkit-filter: blur(20px);
-                      -moz-filter: blur(2px);
-                      -ms-filter: blur(2px);
-                      -o-filter: blur(2px);
-                      filter: blur(15px);    */
+                        -moz-filter: blur(2px);
+                        -ms-filter: blur(2px);
+                        -o-filter: blur(2px);
+                        filter: blur(15px);    */
   }
   
   .layout-nav {

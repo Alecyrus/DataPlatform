@@ -8,6 +8,13 @@
         <p class="titlewords">检索结果</p>
         </Col>
       </Row>
+
+
+
+
+
+
+
     </section>
   
   
@@ -19,116 +26,138 @@
       <div class="desc">
   
   
-  
-  
-  
         <Row type="flex" align="top" justify="start" style="margin-top:1em;">
-          <Col span="6" align="center" offset="0">
   
+          <transition name="fadeUp" appear>
+            <Col span="6" align="center" offset="0">
+
+
+            <Row type="flex" align="middle" justify="start" style="margin-top:1em;">
+            <Col span="14" align="left" style="margin-top:1em;" offset="2">
   
-          <Row type="flex" align="middle" justify="center" style="margin-top:3em;">
-            <Col span="14" align="center" style="margin-top:2em;" offset="2">
+            <Breadcrumb>
+              <BreadcrumbItem to="/">首页</BreadcrumbItem>
+              <BreadcrumbItem to="/results">检索结果</BreadcrumbItem>
   
-            <Input v-model="searchKeyword" autocomplete="on" :spellcheck="true"   size="large" style="box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);" :placeholder="searchKeyword"></Input>
-  
-  
-            </Col>
-            <Col span="7" align="left" style="margin-top:2em;" offset="1">
-  
-            <Button type="ghost" style="opacity:0.9;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);" class="shadow" shape="circle" icon="ios-search" @click="search"> Search</Button>
-  
-  
-            </Col>
-          </Row>
-          <Row type="flex" align="top" justify="start" style="margin-top:0em;">
-            <Col span="6" align="center" style="margin-top:4em;" offset="3">
-            <p class="title2">筛选</p>
-            </Col>
-          </Row>
-  
-          <Row type="flex" align="bottom" justify="start" style="margin-top:0em;">
-            <Col span="6" align="center" style="margin-top:2em;" offset="4">
-            <p class="title3">颁发者</p>
-            </Col>
-          </Row>
-  
-          <Row type="flex" align="top" justify="start" style="margin-top:0em;">
-            <Col span="6" align="center" style="margin-top:1em;" offset="5">
-  
-            <Select v-model="issuer" clearable style="width:200px;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);">
-                                          <Option v-for="item in issuerList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                                      </Select>
+            </Breadcrumb>
   
             </Col>
-          </Row>
   
-          <Row type="flex" align="top" justify="start" style="margin-top:0em;">
-            <Col span="6" align="center" style="margin-top:2em;" offset="4">
-            <p class="title3">状态</p>
-            </Col>
-          </Row>
-  
-          <Row type="flex" align="top" justify="start" style="margin-top:0em;">
-            <Col span="6" align="center" style="margin-top:1em;" offset="5">
-  
-            <Select v-model="status" clearable style="width:200px;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);">
-                                          <Option v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                                      </Select>
-  
-            </Col>
           </Row>
   
   
-          <Row type="flex" align="top" justify="start" style="margin-top:0em;">
-            <Col span="6" align="center" style="margin-top:2em;" offset="4">
-            <p class="title3">地区</p>
+            <Row type="flex" align="middle" justify="center" style="margin-top:3em;">
+              <Col span="14" align="center" style="margin-top:2em;" offset="2">
+  
+              <Input v-model="searchKeyword" autocomplete="on" :spellcheck="true" size="large" style="box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);" :placeholder="searchKeyword"></Input>
+  
+  
+              </Col>
+              <Col span="7" align="left" style="margin-top:2em;" offset="1">
+  
+              <Button type="ghost" style="opacity:0.9;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);" class="shadow" shape="circle" icon="ios-search" @click="search"> Search</Button>
+  
+  
+              </Col>
+            </Row>
+            <Row type="flex" align="top" justify="start" style="margin-top:0em;">
+              <Col span="6" align="center" style="margin-top:4em;" offset="3">
+              <p class="title2">筛选</p>
+              </Col>
+            </Row>
+  
+            <Row type="flex" align="bottom" justify="start" style="margin-top:0em;">
+              <Col span="6" align="center" style="margin-top:2em;" offset="4">
+              <p class="title3">颁发者</p>
+              </Col>
+            </Row>
+  
+            <Row type="flex" align="top" justify="start" style="margin-top:0em;">
+              <Col span="6" align="center" style="margin-top:1em;" offset="5">
+  
+              <Select v-model="issuer" clearable style="width:200px;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);">
+                                            <Option v-for="item in issuerList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                        </Select>
+  
+              </Col>
+            </Row>
+  
+            <Row type="flex" align="top" justify="start" style="margin-top:0em;">
+              <Col span="6" align="center" style="margin-top:2em;" offset="4">
+              <p class="title3">状态</p>
+              </Col>
+            </Row>
+  
+            <Row type="flex" align="top" justify="start" style="margin-top:0em;">
+              <Col span="6" align="center" style="margin-top:1em;" offset="5">
+  
+              <Select v-model="status" clearable style="width:200px;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);">
+                                            <Option v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                        </Select>
+  
+              </Col>
+            </Row>
+  
+  
+            <Row type="flex" align="top" justify="start" style="margin-top:0em;">
+              <Col span="6" align="center" style="margin-top:2em;" offset="4">
+              <p class="title3">地区</p>
+              </Col>
+            </Row>
+            <Row type="flex" align="top" justify="start" style="margin-top:0em;">
+              <Col span="6" align="center" style="margin-top:1em;" offset="5">
+  
+              <Select v-model="region" clearable style="width:200px;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);backround-color:white;opacity:0.9">
+                                            <Option v-for="item in regionList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                        </Select>
+  
+              </Col>
+            </Row>
+  
+  
+  
+  
+  
+  
             </Col>
-          </Row>
-          <Row type="flex" align="top" justify="start" style="margin-top:0em;">
-            <Col span="6" align="center" style="margin-top:1em;" offset="5">
   
-            <Select v-model="region" clearable style="width:200px;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);backround-color:white;opacity:0.9">
-                                          <Option v-for="item in regionList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                                      </Select>
-  
-            </Col>
-          </Row>
-  
-  
-  
-  
-  
-  
-          </Col>
+          </transition>
   
           <Col span="12" align="left">
   
-          <Row type="flex" align="top" justify="start" style="margin-top:0em;">
-            <Col span="6" align="left" style="margin-top:2em;margin-bottom:2em" offset="0">
-            <p class="title2">证书列表</p>
-            </Col>
-          </Row>
+          <transition name="fadeUp" appear>
+  
+            <Row type="flex" align="top" justify="start" style="margin-top:0em;">
+              <Col span="6" align="left" style="margin-top:2em;margin-bottom:2em" offset="0">
+              <p class="title2">证书列表</p>
+              </Col>
+            </Row>
+  
+  
+          </transition>
+  
+  
   
   
           <!-- <Row type="flex" align="top" justify="start" style="margin-top:0em;">
-                <Col span="22" align="left" style="margin-top:0em;" offset="0">
-                <hr style="height:1px;border:none;border-top:1px solid grey;
-                                                        z-index:999;
-                                                        margin:2em 0em 0.2em 0em;
-                                                        width:90%;opacity:0.5;
-                                                        border-radius:1px;
-                                                        box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
-                                                        " />
-                </Col>
-              </Row> -->
+                  <Col span="22" align="left" style="margin-top:0em;" offset="0">
+                  <hr style="height:1px;border:none;border-top:1px solid grey;
+                                                          z-index:999;
+                                                          margin:2em 0em 0.2em 0em;
+                                                          width:90%;opacity:0.5;
+                                                          border-radius:1px;
+                                                          box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
+                                                          " />
+                  </Col>
+                </Row> -->
   
           <Scroll loading-text="获取数据中" :on-reach-bottom="handleReachBottom" height="650">
             <Row type="flex" align="middle" justify="start" style="margin-top:0.2em;margin-bottom:5em">
               <Col span="22" align="left">
   
-              <transition-group name="fadeUp" tag="div">
+              <transition-group name="fadeUp" tag="div" appear>
   
-                <Card class="cert" :padding="0" v-for="(item, index) in certlist" :key="index" style="margin-bottom:1em">
+                <Card  class="cert" :padding="0" v-for="(item, index) in certlist" :key="index" style="margin-bottom:1em">
   
                   <Row type="flex" justify="start" align="middle" style="margin-top:0.5em;margin-left:0.8em;">
                     <Col span="1" align="right" style="margin-top:0em;" offset="0">
@@ -138,7 +167,7 @@
                     </Col>
                     <Col span="22" align="left" style="margin-left:0.5em;" offset="0">
   
-                    <p style="font-size:1.2em;text-shadow: black 0.05em 0.05em 2em;;opacity:0.9">{{item.title}}</p>
+                    <p @click="enterCertDetail(item, index)" style="font-size:1.2em;text-shadow: black 0.05em 0.05em 2em;;opacity:0.9">{{item.title}}</p>
   
                     </Col>
                   </Row>
@@ -201,36 +230,25 @@
           </Col>
   
   
-  
+   <transition name="fadeUp" appear>
   
           <Col span="6" align="center">
   
   
   
-          <Row type="flex" align="middle" justify="start" style="margin-top:2em;">
-            <Col span="14" align="left" style="margin-top:2em;" offset="3">
-  
-            <Breadcrumb>
-              <BreadcrumbItem to="/">首页</BreadcrumbItem>
-              <BreadcrumbItem to="/results">检索结果</BreadcrumbItem>
-  
-            </Breadcrumb>
-  
-            </Col>
-  
-          </Row>
+          
   
   
   
   
           <!-- <hr style="height:1px;border:none;border-top:1px solid #555555;
-                                                        margin:2em 0em 1em 0em;
-                                                        width:80%;opacity:0.5;
-                                                        border-radius:1px;
-                                                        box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
-                                                        " /> -->
+                                                          margin:2em 0em 1em 0em;
+                                                          width:80%;opacity:0.5;
+                                                          border-radius:1px;
+                                                          box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
+                                                          " /> -->
   
-          <Row type="flex" align="top" justify="center" style="margin-top:0em;">
+          <Row type="flex" align="top" justify="center" style="margin-top:4em;">
             <Col span="20" align="center" style="margin-top:2em;" offset="1">
   
   
@@ -253,11 +271,11 @@
                       <Row type="flex" align="top" justify="center" style="margin-top:0em;">
                         <Col span="22" align="center" style="margin-top:0em;" offset="1">
                         <hr style="height:1px;border:none;border-top:1px solid grey;
-                                                        margin:2em 0em 1em 0em;
-                                                        width:90%;opacity:0.5;
-                                                        border-radius:1px;
-                                                        box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
-                                                        " />
+                                                          margin:2em 0em 1em 0em;
+                                                          width:90%;opacity:0.5;
+                                                          border-radius:1px;
+                                                          box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
+                                                          " />
                         </Col>
                       </Row>
   
@@ -274,11 +292,11 @@
                       <Row type="flex" align="top" justify="center" style="margin-top:0em;">
                         <Col span="22" align="center" style="margin-top:0em;" offset="1">
                         <hr style="height:1px;border:none;border-top:1px solid grey;
-                                                        margin:2em 0em 1em 0em;
-                                                        width:90%;opacity:0.5;
-                                                        border-radius:1px;
-                                                        box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
-                                                        " />
+                                                          margin:2em 0em 1em 0em;
+                                                          width:90%;opacity:0.5;
+                                                          border-radius:1px;
+                                                          box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
+                                                          " />
   
                         </Col>
                       </Row>
@@ -294,11 +312,11 @@
                       <Row type="flex" align="top" justify="center" style="margin-top:0em;">
                         <Col span="22" align="center" style="margin-top:0em;" offset="1">
                         <hr style="height:1px;border:none;border-top:1px solid grey;
-                                                        margin:2em 0em 3em 0em;
-                                                        width:90%;opacity:0.5;
-                                                        border-radius:1px;
-                                                        box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
-                                                        " />
+                                                          margin:2em 0em 3em 0em;
+                                                          width:90%;opacity:0.5;
+                                                          border-radius:1px;
+                                                          box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
+                                                          " />
   
                         </Col>
                       </Row>
@@ -313,6 +331,8 @@
             </Col>
           </Row>
           </Col>
+
+           </transition>
   
         </Row>
       </div>
@@ -446,7 +466,7 @@
   
             },
             success: {
-              
+  
               position: 'topCenter'
             },
             warning: {
@@ -491,19 +511,25 @@
       this.searchKeyword = this.$route.query.keywords;
       //this.$Message.info(this.searchKeyword)
   
-      this.$toast.show('Welcome!', 'Hello', this.notificationSystem.options.info);
+      this.$toast.show('检索成功!', 'Info', this.notificationSystem.options.info);
   
     },
     methods: {
       search() {
   
       },
+      enterCertDetail(item, index) {
+        this.$toast.success(""+index, 'Info', this.notificationSystem.options.success);
+
+        this.$router.push("certificate/"+item.Date)
+
+      },
       handleReachBottom() {
   
   
         return new Promise(resolve => {
           setTimeout(() => {
-
+  
             this.$toast.success('加载成功', 'Info', this.notificationSystem.options.success);
             this.certlist.push({
               title: "C=GB, ST=London, L=London, O=Macfarlanes LLP, OU=IT, CN=da.macfarlanes.com",
