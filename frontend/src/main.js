@@ -27,7 +27,12 @@ import 'vue-awesome/icons'
 /* Register component with one of 2 methods */
 
 import Icon from 'vue-awesome/components/Icon'
+import Vuebar from 'vuebar';
 
+import Spinner from 'vue-spinkit'
+
+Vue.component('Spinner', Spinner)
+Vue.use(Vuebar);
 // globally (in your main .js file)
 Vue.component('awe-icon', Icon)
 

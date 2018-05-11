@@ -18,7 +18,9 @@
     "vue-izitoast": "^1.0.1",
     "vue-material": "^1.0.0-beta-8",
     "vue-router": "^3.0.1",
-    "vue2-animate": "^2.0.0"
+    "vue-spinkit": "^1.4.0",
+    "vue2-animate": "^2.0.0",
+    "vuebar": "^0.0.18"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -17,24 +17,20 @@
   
   
               <Row type="flex" justify="start" align="top">
-                <Col span="5" offset="6" align="center">
-                <Icon size="38" color="black" style="margin-top:12px;opacity:0.8;" type="ios-flower-outline"></Icon>
+                <Col span="2" offset="6" align="right" >
+                <!-- <Icon size="38" color="black" style="margin-top:12px;opacity:0.8;" type="ios-flower-outline"></Icon> -->
+                <Spinner name="ball-scale-multiple" style="margin-top:30px;opacity:0.8;" color="#ce3d31"/>
                 </Col>
-                <Col span="12" align="left">
+                <Col span="10" align="left">
                 <p style="font-size:1.9em;color:#222;;font-weight:bolder;user-select:none;font-family:"> <i> SpringX</i> </p>
                 </Col>
   
               </Row>
-  
-  
-  
-  
-  
             </div>
             <div class="layout-nav">
               <MenuItem name="/"> 首页
               </MenuItem>
-              <MenuItem name="/help"> 帮助
+              <MenuItem name="/report"> 报告
               </MenuItem>
               <MenuItem name="/about"> 关于
               </MenuItem>
