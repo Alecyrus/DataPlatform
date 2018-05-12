@@ -15,7 +15,7 @@ The Frontend For My Graduation Project
 - [ ] 证书详情页
     - [ ] 证书
       - [X] 总结
-      - [ ] Open SSL
+      - [X] Open SSL
       - [ ] ASN.1
     - [ ] 授信
       - [ ] Apple
