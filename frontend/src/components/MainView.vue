@@ -30,7 +30,7 @@
             <div class="layout-nav">
               <MenuItem name="/"> 首页
               </MenuItem>
-              <MenuItem name="/report"> 报告
+              <MenuItem name="/reports"> 报告
               </MenuItem>
               <MenuItem name="/about"> 关于
               </MenuItem>
@@ -194,7 +194,7 @@
   
       },
       handleMenuSelect() {
-        if (arguments[0] != "/") {
+        if (arguments[0] != "/" && arguments[0] != "/reports") {
           this.$toast.error('尚未开放,敬请期待', 'Error', {
             position: "topCenter"
           });
