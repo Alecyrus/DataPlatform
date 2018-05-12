@@ -13,10 +13,10 @@ The Frontend For My Graduation Project
     - [X] 动画效果
     - [ ] 连接后台
 - [ ] 证书详情页
-    - [X] 证书
+    - [X] 证书
       - [X] 总结
       - [X] Open SSL
-      - [X] ASN.1
+      - [X] ASN.1
     - [ ] 授信
       - [ ] Apple
       - [ ] Microsoft
