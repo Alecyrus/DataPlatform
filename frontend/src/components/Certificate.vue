@@ -62,9 +62,9 @@
                                              <awe-icon name="certificate"  scale="0.8" ></awe-icon>
                                                     &nbsp;&nbsp;证书
 </template>
-                    <MenuItem name="t11">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总结</MenuItem>
-                    <MenuItem name="t12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Open SSL</MenuItem>
-                    <MenuItem name="t13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASN.1</MenuItem>
+                    <MenuItem name="smmary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总结</MenuItem>
+                    <MenuItem name="openssl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Open SSL</MenuItem>
+                    <MenuItem name="asn1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASN.1</MenuItem>
                 </Submenu>
                 <Submenu name="2">
 <template slot="title">
@@ -72,10 +72,10 @@
   </awe-icon>
   &nbsp;&nbsp;授信
 </template>
-                    <MenuItem name="t21">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<awe-icon name="brands/apple"  scale="0.8" ></awe-icon>&nbsp;&nbsp;Apple</MenuItem>
-                    <MenuItem name="t22">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<awe-icon name="brands/windows"  scale="0.8" ></awe-icon>&nbsp;&nbsp;Microsoft</MenuItem>
-                    <MenuItem name="t23">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<awe-icon name="brands/firefox"  scale="0.8" ></awe-icon>&nbsp;&nbsp;Mozilla NSS</MenuItem>
-                    <MenuItem name="t24">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<awe-icon name="brands/google"  scale="0.8" ></awe-icon>&nbsp;&nbsp;Google CT</MenuItem>
+                    <MenuItem name="apple">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<awe-icon name="brands/apple"  scale="0.8" ></awe-icon>&nbsp;&nbsp;Apple</MenuItem>
+                    <MenuItem name="microsoft">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<awe-icon name="brands/windows"  scale="0.8" ></awe-icon>&nbsp;&nbsp;Microsoft</MenuItem>
+                    <MenuItem name="mozillanss">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<awe-icon name="brands/firefox"  scale="0.8" ></awe-icon>&nbsp;&nbsp;Mozilla NSS</MenuItem>
+                    <MenuItem name="googlect">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<awe-icon name="brands/google"  scale="0.8" ></awe-icon>&nbsp;&nbsp;Google CT</MenuItem>
                 </Submenu>
                 <Submenu name="3">
 <template slot="title">
@@ -83,10 +83,10 @@
   </awe-icon>
   &nbsp;&nbsp;数据
 </template>
-                    <MenuItem name="t31">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAW</MenuItem>
-                    <MenuItem name="t32">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JSON</MenuItem>
-                    <MenuItem name="t33">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PEM</MenuItem>
-                    <MenuItem name="t34">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DER</MenuItem>
+                    <MenuItem name="raw">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RAW</MenuItem>
+                    <MenuItem name="json">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JSON</MenuItem>
+                    <MenuItem name="pem">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PEM</MenuItem>
+                    <MenuItem name="der">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DER</MenuItem>
                 </Submenu>
 
                  <Submenu name="3">
@@ -141,13 +141,15 @@
 
              </transition>
 
-             <transition name="fadeUp" mode="out-in">
+            
 
                 <Scroll height="680" >
+                   <transition name="slideDown" mode="out-in">
                  <router-view></router-view>
+                   </transition>
                </Scroll>
                 
-             </transition>
+           
 
 
             
@@ -174,17 +176,17 @@
         desc: "",
         contentTitle: "总结",
         titleMap: {
-          t11: "总结",
-          t12: "Open SSL",
-          t13: "ANC.1",
-          t21: "Apple",
-          t22: "Microsoft",
-          t23: "Mozilla NSS",
-          t24: "Google CT",
-          t31: "RAW",
-          t32: "JSON",
-          t33: "PEM",
-          t34: "DER",
+          smmary: "总结",
+          openssl: "Open SSL",
+          anc1: "ANC.1",
+          apple: "Apple",
+          nicrosoft: "Microsoft",
+          mozillanss: "Mozilla NSS",
+          googlect: "Google CT",
+          raw: "RAW",
+          json: "JSON",
+          pem: "PEM",
+          der: "DER",
           t41: "CA 机构",
           t42: "相同序列号",
           t43: "相同公钥",
@@ -568,6 +570,12 @@
           position: 'topCenter'
         }, );
         this.contentTitle = eval("this.titleMap." + arguments[0])
+        if(arguments[0] == "smmary") {
+          this.$router.push("/certificate");
+        } else {
+            this.$router.push("/certificate/"+arguments[0])
+        }
+        
       }
     },
   
@@ -575,7 +583,10 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
+
+$animationDuration: 0.6s; // specify animation duration. Default value: 1s
+@import "vue2-animate/src/sass/vue2-animate.scss";
   .cert {
     transition: all ease-in-out 0.4s;
   }

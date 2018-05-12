@@ -63,7 +63,7 @@
           <transition name="fadeUp" appear>
   
             <Row type="flex" align="top" justify="start" style="margin-top:0em;">
-              <Col span="8" align="left" style="margin-top:2em;margin-bottom:2em" offset="0">
+              <Col span="12" align="left" style="margin-top:2em;margin-bottom:2em" offset="0">
               <p class="title2">全球443端口开放情况</p>
               </Col>
             </Row>
@@ -72,43 +72,47 @@
           </transition>
   
   
-          <Row type="flex" align="middle" justify="start" style="margin-top:2em;margin-bottom:5em">
-            <Col span="22" align="left">
-  
-            <highmaps :options="options"></highmaps>
+          <transition name="fadeUp" appear>
   
   
-            </Col>
-          </Row>
+            <Row type="flex" align="middle" justify="start" style="margin-top:2em;margin-bottom:5em">
+              <Col span="22" align="left">
+  
+              <highmaps :options="options"></highmaps>
+  
+  
+              </Col>
+            </Row>
+          </transition>
   
   
   
   
           <!-- <Row type="flex" align="top" justify="start" style="margin-top:0em;">
-                                    <Col span="22" align="left" style="margin-top:0em;" offset="0">
-                                    <hr style="height:1px;border:none;border-top:1px solid grey;
-                                                                            z-index:999;
-                                                                            margin:2em 0em 0.2em 0em;
-                                                                            width:90%;opacity:0.5;
-                                                                            border-radius:1px;
-                                                                            box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
-                                                                            " />
-                                    </Col>
-                                  </Row> -->
+                                      <Col span="22" align="left" style="margin-top:0em;" offset="0">
+                                      <hr style="height:1px;border:none;border-top:1px solid grey;
+                                                                              z-index:999;
+                                                                              margin:2em 0em 0.2em 0em;
+                                                                              width:90%;opacity:0.5;
+                                                                              border-radius:1px;
+                                                                              box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
+                                                                              " />
+                                      </Col>
+                                    </Row> -->
   
           <!-- <Scroll loading-text="获取数据中" :on-reach-bottom="handleReachBottom" height="650">
-                              <Row type="flex" align="middle" justify="start" style="margin-top:0.2em;margin-bottom:5em">
-                                <Col span="22" align="left">
-                    
-                                <transition-group name="fadeUp" tag="div" appear>
-                    
-                                 
-                    
-                                </transition-group>
-                    
-                                </Col>
-                              </Row>
-                            </Scroll> -->
+                                <Row type="flex" align="middle" justify="start" style="margin-top:0.2em;margin-bottom:5em">
+                                  <Col span="22" align="left">
+                      
+                                  <transition-group name="fadeUp" tag="div" appear>
+                      
+                                   
+                      
+                                  </transition-group>
+                      
+                                  </Col>
+                                </Row>
+                              </Scroll> -->
   
   
           </Col>
@@ -126,11 +130,11 @@
   
   
             <!-- <hr style="height:1px;border:none;border-top:1px solid #555555;
-                                                                            margin:2em 0em 1em 0em;
-                                                                            width:80%;opacity:0.5;
-                                                                            border-radius:1px;
-                                                                            box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
-                                                                            " /> -->
+                                                                              margin:2em 0em 1em 0em;
+                                                                              width:80%;opacity:0.5;
+                                                                              border-radius:1px;
+                                                                              box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
+                                                                              " /> -->
   
             <Row type="flex" align="top" justify="center" style="margin-top:4em;">
               <Col span="20" align="center" style="margin-top:2em;" offset="1">

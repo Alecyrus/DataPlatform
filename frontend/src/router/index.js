@@ -6,6 +6,7 @@ import MainView from '@/components/MainView'
 import Certificate from '@/components/Certificate'
 import Smmary from '@/components/Smmary'
 import Reports from '@/components/Reports'
+import OpenSSL from '@/components/OpenSSL'
 
 Vue.use(Router)
 
@@ -29,12 +30,16 @@ export default new Router({
           component:Results,
         },
         {
-          path:'certificate/:id',
+          path:'certificate',
           component:Certificate,
           children: [
             {
               path: '', 
               component:Smmary,
+            },
+            {
+              path: 'openssl', 
+              component:OpenSSL,
             }
           ]
         }

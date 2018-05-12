@@ -214,7 +214,10 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
+
+$animationDuration: 0.7s;
+@import "vue2-animate/src/sass/vue2-animate.scss";
   .backgroundac {
     transition: all ease-in-out 0.5s;
     filter: blur(10px);

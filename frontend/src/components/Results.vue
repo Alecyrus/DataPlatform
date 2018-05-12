@@ -521,7 +521,7 @@
       enterCertDetail(item, index) {
         this.$toast.success(""+index, 'Info', this.notificationSystem.options.success);
 
-        this.$router.push("certificate/"+item.Date)
+        this.$router.push("certificate")
 
       },
       handleReachBottom() {
@@ -556,7 +556,10 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
+
+
+
   .cert {
     transition: all ease-in-out 0.4s;
   }

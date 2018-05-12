@@ -44,6 +44,7 @@ Vue.use(VueLocalStorage);
 Vue.config.productionTip = false;
 require('vue2-animate/dist/vue2-animate.min.css')
 
+
 new Vue({
   el: '#app',
   router,
