@@ -17,7 +17,6 @@ The Frontend For My Graduation Project
       - [X] 总结
       - [ ] Open SSL
       - [ ] ASN.1
-      - [ ] 总结
     - [ ] 授信
       - [ ] Apple
       - [ ] Microsoft
