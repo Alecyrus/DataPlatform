@@ -7,6 +7,7 @@ import Certificate from '@/components/Certificate'
 import Smmary from '@/components/Smmary'
 import Reports from '@/components/Reports'
 import OpenSSL from '@/components/OpenSSL'
+import Asn1 from '@/components/Asn1'
 
 Vue.use(Router)
 
@@ -40,6 +41,10 @@ export default new Router({
             {
               path: 'openssl', 
               component:OpenSSL,
+            },
+            {
+              path: 'asn1', 
+              component:Asn1,
             }
           ]
         }

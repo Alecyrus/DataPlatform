@@ -144,9 +144,9 @@
             
 
                 <Scroll height="680" >
-                   <transition name="slideDown" mode="out-in">
+                   <!-- <transition name="fadeDown" mode="out-in"> -->
                  <router-view></router-view>
-                   </transition>
+                   <!-- </transition> -->
                </Scroll>
                 
            
@@ -178,7 +178,7 @@
         titleMap: {
           smmary: "总结",
           openssl: "Open SSL",
-          anc1: "ANC.1",
+          asn1: "ASN.1",
           apple: "Apple",
           nicrosoft: "Microsoft",
           mozillanss: "Mozilla NSS",
@@ -591,7 +591,9 @@ $animationDuration: 0.6s; // specify animation duration. Default value: 1s
     transition: all ease-in-out 0.4s;
   }
   
-  .cert:hover {}
+  .cert:hover {
+    
+  }
   
   .iziToast-capsule {
     margin-top: 100px !important;
