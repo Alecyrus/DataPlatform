@@ -90,7 +90,6 @@ async def search(request):
         limit = request.args.get('limit',1)
         skip = request.args.get('skip',0)
 
-        # results = await app.db.https.find({"$text":{ "$search": "123.124.171.19" }}).limit(limit).skip(skip)
         temp =  app.db.https.find({"$text":{ "$search": keywords }})
         resp['total'] = await temp.count()
         resp["data"] = await temp.limit(limit).skip(skip).to_list(None)

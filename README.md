@@ -17,16 +17,15 @@ The Frontend For My Graduation Project
       - [X] 总结
       - [X] Open SSL
       - [X] ASN.1
-    - [ ] 授信
-      - [ ] Apple
-      - [ ] Microsoft
-      - [ ] Mozilla NSS
-      - [ ] Google CT
+    - [X] 授信
+      - [X] Apple
+      - [X] Microsoft
+      - [X] Mozilla NSS
+      - [X] Google CT
     - [ ] 数据
       - [ ] PEM
       - [ ] DER
-      - [ ] JSON
-      - [ ] RAW
+      - [X] RAW
     - [ ] 探索
       - [ ] CA 机构
       - [ ] 相关证书

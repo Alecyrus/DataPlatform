@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@hscmap/vue-menu": "^1.4.4",
     "css-loader": "^0.28.11",
     "highcharts": "^6.1.0",
     "iview": "^2.13.1",
@@ -19,13 +20,16 @@
     "sass-loader": "^7.0.1",
     "vue": "^2.5.2",
     "vue-carousel-3d": "^0.1.20",
+    "vue-clipboard2": "^0.1.0",
+    "vue-d3-network": "^0.1.24",
     "vue-highcharts": "^0.0.10",
     "vue-izitoast": "^1.0.1",
     "vue-material": "^1.0.0-beta-8",
     "vue-router": "^3.0.1",
     "vue-spinkit": "^1.4.0",
     "vue2-animate": "^2.0.0",
-    "vuebar": "^0.0.18"
+    "vuebar": "^0.0.18",
+    "vued3tree": "^3.5.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

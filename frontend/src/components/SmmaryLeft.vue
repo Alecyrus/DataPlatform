@@ -277,7 +277,7 @@
     font-size: 1.45em;
     font-family: Helvetica;
     /* font-weight: bolder; */
-    text-shadow: black 0.1em 0.1em 1.5em;
+    /* text-shadow: black 0.1em 0.1em 1.5em; */
   }
   
   .title3 {
@@ -286,7 +286,7 @@
     user-select: none;
     font-size: 1.2em;
     font-family: Helvetica;
-    text-shadow: black 0.1em 0.1em 1.5em;
+    /* text-shadow: black 0.1em 0.1em 1.5em; */
     margin-left: 0.5em;
   }
   

@@ -270,7 +270,7 @@
     white-space: -pre-wrap;
     white-space: -o-pre-wrap;
     word-wrap: break-word;
-     text-shadow: black 0.1em 0.1em 5em;
+     /* text-shadow: black 0.1em 0.1em 5em; */
   }
   
   .trust {

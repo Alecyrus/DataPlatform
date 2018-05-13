@@ -210,7 +210,7 @@
     font-size: 1.0em;
     user-select: none;
     /* font-weight: bolder; */
-    text-shadow: black 0.1em 0.1em 2em;
+    /* text-shadow: black 0.1em 0.1em 2em; */
 
 }
 .brands {
@@ -219,7 +219,7 @@
     font-size: 1.0em;
     user-select: none;
     font-weight: bolder;
-    text-shadow: black 0.1em 0.1em 2em;
+    /* text-shadow: black 0.1em 0.1em 2em; */
 
 
 }
@@ -258,7 +258,7 @@
     font-size: 1.45em;
     font-family: Helvetica;
     /* font-weight: bolder; */
-    text-shadow: black 0.1em 0.1em 1.5em;
+    /* text-shadow: black 0.1em 0.1em 1.5em; */
   }
   
   .title3 {
@@ -267,7 +267,7 @@
     user-select: none;
     font-size: 1.0em;
     font-family: Helvetica;
-    text-shadow: black 0.1em 0.1em 2em;
+    /* text-shadow: black 0.1em 0.1em 2em; */
     margin-left: 0.5em;
   }
   

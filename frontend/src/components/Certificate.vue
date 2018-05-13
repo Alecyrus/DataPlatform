@@ -73,12 +73,16 @@
   &nbsp;&nbsp;授信
 </template>
                     <MenuItem name="apple">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<awe-icon name="brands/apple"  scale="0.8" ></awe-icon>&nbsp;&nbsp;Apple</MenuItem>
-                    <MenuItem name="microsoft">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<awe-icon name="brands/windows"  scale="0.8" ></awe-icon>&nbsp;&nbsp;Microsoft</MenuItem>
+                    <MenuItem name="microsoft">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<awe-icon name="brands/microsoft"  scale="0.8" ></awe-icon>&nbsp;&nbsp;Microsoft</MenuItem>
                     <MenuItem name="mozillanss">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<awe-icon name="brands/firefox"  scale="0.8" ></awe-icon>&nbsp;&nbsp;Mozilla NSS</MenuItem>
                     <MenuItem name="googlect">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<awe-icon name="brands/google"  scale="0.8" ></awe-icon>&nbsp;&nbsp;Google CT</MenuItem>
                 </Submenu>
-                <Submenu name="3">
-<template slot="title">
+                <!-- <Submenu name="3"> -->
+
+                  
+
+                  <MenuItem name="rawdata"> <awe-icon name="terminal" scale="0.8">  </awe-icon>&nbsp;&nbsp;&nbsp;数据</MenuItem>
+<!-- <template slot="title">
   <awe-icon name="database" scale="0.8">
   </awe-icon>
   &nbsp;&nbsp;数据
@@ -87,7 +91,7 @@
                     <MenuItem name="json">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JSON</MenuItem>
                     <MenuItem name="pem">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PEM</MenuItem>
                     <MenuItem name="der">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DER</MenuItem>
-                </Submenu>
+                </Submenu> -->
 
                  <Submenu name="3">
 <template slot="title">
@@ -128,25 +132,27 @@
   
           <Col span="19" align="left" style="">
   
-          <transition name="fadeUp" appear>
+          
 
            
   
             <Row type="flex" align="top" justify="start" style="margin-top:0em;">
               <Col span="6" align="left" style="margin-top:2em;margin-bottom:0em" offset="0">
+              <transition name="fadeUp" appear>
               <p class="title2">{{contentTitle}}</p>
+                 </transition>
               </Col>
             </Row>
 
 
-             </transition>
+          
 
             
 
                 <Scroll height="680" >
-                   <!-- <transition name="fadeDown" mode="out-in"> -->
+                   <transition name="fade" mode="out-in">
                  <router-view></router-view>
-                   <!-- </transition> -->
+                   </transition>
                </Scroll>
                 
            
@@ -180,9 +186,10 @@
           openssl: "Open SSL",
           asn1: "ASN.1",
           apple: "Apple",
-          nicrosoft: "Microsoft",
+          microsoft: "Microsoft",
           mozillanss: "Mozilla NSS",
           googlect: "Google CT",
+          rawdata:"数据",
           raw: "RAW",
           json: "JSON",
           pem: "PEM",
@@ -585,7 +592,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
-$animationDuration: 0.6s; // specify animation duration. Default value: 1s
+$animationDuration: 0.4s; // specify animation duration. Default value: 1s
 @import "vue2-animate/src/sass/vue2-animate.scss";
   .cert {
     transition: all ease-in-out 0.4s;
