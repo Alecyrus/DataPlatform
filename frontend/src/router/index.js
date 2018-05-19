@@ -13,6 +13,9 @@ import Microsoft from '@/components/Microsoft'
 import GoogleCT from '@/components/GoogleCT'
 import MozillaNss from '@/components/MozillaNss'
 import RawData from '@/components/RawData'
+import CertifiAu from '@/components/CertifiAu'
+
+
 
 Vue.use(Router)
 
@@ -70,6 +73,14 @@ export default new Router({
             {
               path: 'rawdata', 
               component:RawData,
+            },  
+            {
+              path: 'certifiau', 
+              component:CertifiAu,
+            },
+            {
+              path: 'certifiau', 
+              component:CertifiAu,
             },
           ]
         }

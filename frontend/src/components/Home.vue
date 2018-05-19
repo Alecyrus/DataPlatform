@@ -1,122 +1,122 @@
 <template>
   <div>
-
-
+  
+  
     <transition name="fadeDown" appear>
   
-    <section style="margin-top:16em;">
+      <section style="margin-top:16em;">
   
-      <Row type="flex" justify="start">
-        <Col span="12" align="left" offset="5">
-        <p class="titlewords">{{t1}}</p>
-        </Col>
-      </Row>
-      <Row type="flex" justify="start">
-        <Col span="12" align="left" offset="5">
-        <p class="titlewords">{{t2}}</p>
-        </Col>
-      </Row>
-      <Row type="flex" justify="start">
-        <Col span="12" align="left" offset="5">
-        <p class="titlewords">{{t3}}</p>
-        </Col>
-      </Row>
-
-
+        <Row type="flex" justify="start">
+          <Col span="12" align="left" offset="5">
+          <p class="titlewords">{{t1}}</p>
+          </Col>
+        </Row>
+        <Row type="flex" justify="start">
+          <Col span="12" align="left" offset="5">
+          <p class="titlewords">{{t2}}</p>
+          </Col>
+        </Row>
+        <Row type="flex" justify="start">
+          <Col span="12" align="left" offset="5">
+          <p class="titlewords">{{t3}}</p>
+          </Col>
+        </Row>
+  
+  
       </section>
-
-      </transition>
-
-
-<transition name="fade" appear>
+  
+    </transition>
+  
+  
+    <transition name="fade" appear>
       <section>
   
   
-      <Row type="flex" align="middle" justify="start" style="margin-top:3em;">
-        <Col span="8" align="left" offset="5">
-        <input autocomplete="off" v-model="searchKeywords" spellcheck="false" type="text" placeholder="输入IPv4地址或域名字符串" class="ivu-input shadow search ivu-input-large">
-        </input>
-        </Col>
+        <Row type="flex" align="middle" justify="start" style="margin-top:3em;">
+          <Col span="8" align="left" offset="5">
+          <input autocomplete="off" v-model="searchKeywords" spellcheck="false" type="text" placeholder="输入IPv4地址或域名字符串" class="ivu-input shadow search ivu-input-large">
+          </input>
+          </Col>
   
-        <Col span="2" align="center">
-        <Button type="primary" style="opacity:0.8;" class="shadow" size="large" shape="circle" icon="ios-search" @click="search" > Search</Button>
-        </Col>
-      </Row>
-    </section>
+          <Col span="2" align="center">
+          <Button type="primary" style="opacity:0.8;" class="shadow" size="large" shape="circle" icon="ios-search" @click="search"> Search</Button>
+          </Col>
+        </Row>
+      </section>
   
   
     </transition>
   
   
-  <transition name="fadeLeft" appear>
-    <section>
+    <transition name="fadeLeft" appear>
+      <section>
   
-      <div class="desc">
+        <div class="desc">
   
   
   
-        <Carousel autoplay :autoplay-speed="5000" :radius-dot="true" loop>
-          <CarouselItem>
-            <Row type="flex" align="middle" justify="start" style="margin-top:1em;">
-              <Col span="6" align="center" offset="6">
-              <Icon size="160" type="earth"></Icon>
-              </Col>
+          <Carousel autoplay :autoplay-speed="5000" :radius-dot="true" loop>
+            <CarouselItem>
+              <Row type="flex" align="middle" justify="start" style="margin-top:1em;">
+                <Col span="6" align="center" offset="6">
+                <Icon size="160" type="earth"></Icon>
+                </Col>
   
-              <Col span="12" align="center">
+                <Col span="12" align="center">
   
-              <Row type="flex" align="middle" justify="start" style="margin-top:4em;">
-                <Col span="8" align="left">
-                <p style="font-size:2.8em;text-shadow: black 0.1em 0.1em 1.5em;">什么是 <i><strong>SpringX</strong></i> </p>
+                <Row type="flex" align="middle" justify="start" style="margin-top:4em;">
+                  <Col span="8" align="left">
+                  <p style="font-size:2.8em;">什么是 <i><strong>SpringX</strong></i> </p>
+                  </Col>
+                </Row>
+  
+                <Row type="flex" align="middle" justify="start" style="margin-top:1em;margin-bottom:5em">
+                  <Col span="12" align="left">
+                  <p style="font-size:1.4em;"><i><strong>SpringX</strong></i> 是一个互联网公钥基础设施信息检索系统。
+                    <br>系统对整个互联网(目前主要针对中国)的互联网公钥基础设施(Public Key Infrastructure)信息进行了全面的收集维护。<br>为研究者和普通用户提供信息检索和数据分析服务.</p>
+                  </Col>
+                </Row>
+  
+  
                 </Col>
               </Row>
+            </CarouselItem>
+            <CarouselItem>
+              <Row type="flex" align="middle" justify="start" style="margin-top:1em;">
+                <Col span="6" align="center" offset="6">
+                <Icon size="160" type="cube"></Icon>
+                </Col>
   
-              <Row type="flex" align="middle" justify="start" style="margin-top:1em;margin-bottom:5em">
-                <Col span="12" align="left">
-                <p style="font-size:1.4em;"><i><strong>SpringX</strong></i> 是一个互联网公钥基础设施信息检索系统。
-                  <br>系统对整个互联网(目前主要针对中国)的互联网公钥基础设施(Public Key Infrastructure)信息进行了全面的收集维护。<br>为研究者和普通用户提供信息检索和数据分析服务.</p>
+                <Col span="12" align="center">
+  
+                <Row type="flex" align="middle" justify="start" style="margin-top:4em;">
+                  <Col span="8" align="left">
+                  <p style="font-size:2.8em;"><i><strong>SpringX </strong></i>的能力 </p>
+                  </Col>
+                </Row>
+  
+                <Row type="flex" align="middle" justify="start" style="margin-top:1em;margin-bottom:5em">
+                  <Col span="12" align="left">
+                  <p style="font-size:1.4em;"><i><strong>SpringX</strong></i> 是一个互联网公钥基础设施信息检索系统。
+                    <br>系统对整个互联网(目前主要针对中国)的互联网公钥基础设施(Public Key Infrastructure)信息进行了全面的收集维护。<br>为研究者和普通用户提供信息检索和数据分析服务.</p>
+                  </Col>
+                </Row>
+  
+  
                 </Col>
               </Row>
-  
-  
-              </Col>
-            </Row>
-          </CarouselItem>
-          <CarouselItem>
-            <Row type="flex" align="middle" justify="start" style="margin-top:1em;">
-              <Col span="6" align="center" offset="6">
-              <Icon size="160" type="cube"></Icon>
-              </Col>
-  
-              <Col span="12" align="center">
-  
-              <Row type="flex" align="middle" justify="start" style="margin-top:4em;">
-                <Col span="8" align="left">
-                <p style="font-size:2.8em;text-shadow: black 0.1em 0.1em 1.5em;"><i><strong>SpringX </strong></i>的能力 </p>
-                </Col>
-              </Row>
-  
-              <Row type="flex" align="middle" justify="start" style="margin-top:1em;margin-bottom:5em">
-                <Col span="12" align="left">
-                <p style="font-size:1.4em;"><i><strong>SpringX</strong></i> 是一个互联网公钥基础设施信息检索系统。
-                  <br>系统对整个互联网(目前主要针对中国)的互联网公钥基础设施(Public Key Infrastructure)信息进行了全面的收集维护。<br>为研究者和普通用户提供信息检索和数据分析服务.</p>
-                </Col>
-              </Row>
-  
-  
-              </Col>
-            </Row>
-          </CarouselItem>
-        </Carousel>
+            </CarouselItem>
+          </Carousel>
   
   
   
-      </div>
+        </div>
   
-    </section>
-
-        </transition>
+      </section>
   
-
+    </transition>
+  
+  
   </div>
 </template>
 
@@ -133,7 +133,16 @@
     },
     methods: {
       search() {
-        this.$router.push({ path: 'results', query: { keywords: this.searchKeywords }})
+  
+        if (this.searchKeywords == "") {
+          this.$toast.error('请输入搜索关键字', 'Error', {
+            position: "topCenter"
+          });
+        } else {
+            this.$router.push({ path: 'results', query: { keywords: this.searchKeywords }})
+        }
+  
+        
       }
     }
   }
@@ -149,7 +158,7 @@
   .titlewords {
     color: white;
     opacity: 0.8;
-    user-select:none;
+    user-select: none;
     font-size: 3.8em;
     font-weight: bolder;
     text-shadow: black 0.1em 0.1em 1.5em;

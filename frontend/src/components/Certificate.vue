@@ -100,7 +100,7 @@
   </awe-icon>
   &nbsp;&nbsp;探索
 </template>
-                     <MenuItem name="t41">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CA 机构</MenuItem>
+                     <MenuItem name="certifiau">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CA 机构</MenuItem>
                      <MenuGroup  align="left" title="相关证书">
                         <MenuItem  name="t42">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相同序列号</MenuItem>
                         <MenuItem name="t43">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相同公钥</MenuItem>
@@ -180,7 +180,7 @@
     data() {
       return {
         desc: "",
-        contentTitle: "总结",
+        contentTitle: "",
         titleMap: {
           smmary: "总结",
           openssl: "Open SSL",
@@ -194,7 +194,7 @@
           json: "JSON",
           pem: "PEM",
           der: "DER",
-          t41: "CA 机构",
+          certifiau: "CA 机构",
           t42: "相同序列号",
           t43: "相同公钥",
           t44: "相同标识名称",
@@ -567,7 +567,8 @@
       }
     },
     mounted() {
-  
+
+     
   
   
     },
@@ -585,6 +586,8 @@
         
       }
     },
+
+    
   
   }
 </script>

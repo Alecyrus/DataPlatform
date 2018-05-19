@@ -41,7 +41,7 @@ async def search(request):
         param = request.json
         pem = "-----BEGIN CERTIFICATE-----\n"+request.json['raw']["$binary"]+"\n-----END CERTIFICATE-----"
         cert = x509.load_pem_x509_certificate(pem.encode(encoding="utf-8"), default_backend())
-        f1 = open("temp1", "wb")
+        f1 = open("temp", "wb")
         f1.write(cert.public_bytes(encoding=Encoding.DER))
         f1.close()
         p1 = os.popen('asn1dump temp1')
@@ -64,7 +64,7 @@ async def search(request):
         param = request.json
         pem = "-----BEGIN CERTIFICATE-----\n"+request.json['raw']["$binary"]+"\n-----END CERTIFICATE-----"
         cert = x509.load_pem_x509_certificate(pem.encode(encoding="utf-8"), default_backend())
-        f1 = open("temp1", "wb")
+        f1 = open("temp", "wb")
         f1.write(cert.public_bytes(encoding=Encoding.PEM))
         f1.close()
         p1 = os.popen('openssl x509 -noout -text -in temp2')
@@ -87,8 +87,8 @@ async def search(request):
     }
     try:   
         keywords = request.args.get('keywords', "")
-        limit = request.args.get('limit',1)
-        skip = request.args.get('skip',0)
+        limit = int(request.args.get('limit',1))
+        skip = int(request.args.get('skip',0))
 
         temp =  app.db.https.find({"$text":{ "$search": keywords }})
         resp['total'] = await temp.count()
