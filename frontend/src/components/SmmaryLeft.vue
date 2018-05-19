@@ -211,17 +211,7 @@
         </Col>
         </Col>
       </Row>
-  
-  
-  
-  
-  
-  
-  
     </section>
-  
-  
-  
   </div>
 </template>
 
