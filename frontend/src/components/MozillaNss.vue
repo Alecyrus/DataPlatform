@@ -58,7 +58,7 @@
                 Path {{index+1}}
                 <div slot="content">
   
-                  <Row v-for="(cert, cindex) in item" :key="cindex" :name="''+icndex" type="flex" justify="start" align="bottom" style="margin-top:0em;margin-left:0.8em;">
+                  <Row v-for="(cert, cindex) in item" :key="cindex" :name="''+cindex" type="flex" justify="start" align="bottom" style="margin-top:0em;margin-left:0.8em;">
                     <Col span="8" align="right" style="margin-top:0.2em;" offset="0">
                     <p style="font-size:1em;font-weight:bolder"> {{cert.id}}</p>
   

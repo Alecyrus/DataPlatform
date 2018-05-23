@@ -5,7 +5,7 @@
   
       <Col span="15" align="left" style="margin-top:0em;margin-bottom:0em;background-color:;" offset="0">
   
-      <d3-network :link-cb="lcb" :net-nodes="nodes" :net-links="links" :options="options" />
+      <d3-network :net-nodes="nodes" :net-links="links" :options="options" />
   
   
       </Col>
@@ -24,24 +24,26 @@
             </Col>
           </Row>
   
- 
   
-            <Row type="flex" align="middle" justify="start" style="margin-top:1em;">
+  
+          <Row type="flex" align="middle" justify="start" style="margin-top:1em;">
             <Col span="8" align="right" style="margin-bottom:0em" offset="0">
-             <p class="brands"><awe-icon name="brands/apple"  scale="0.9" ></awe-icon>&nbsp;Apple</p>
+            <p class="brands">
+              <awe-icon name="brands/apple" scale="0.9"></awe-icon>&nbsp;Apple</p>
             </Col>
             <Col span="12" align="left" style="margin-bottom:0em" offset="1">
-
-             <p class="trust">&nbsp;&nbsp; <awe-icon name="lock" scale="1" color="green"> </awe-icon> &nbsp;Trusted</p>
+  
+            <p class="trust">&nbsp;&nbsp;
+              <awe-icon name="lock" scale="1" color="green"> </awe-icon> &nbsp;Trusted</p>
             </Col>
           </Row>
-
+  
         </Card>
         </Col>
       </Row>
-
-
-       <Row type="flex" align="top" justify="start" style="margin-top:5em;">
+  
+  
+      <Row type="flex" align="top" justify="start" style="margin-top:5em;">
         <Col span="24" align="center" style="margin-top:1em;margin-bottom:0em" offset="0">
         <Card class="smmary" style="width:100%">
           <Row type="flex" align="top" justify="start" style="margin-top:0em;">
@@ -58,7 +60,7 @@
                 Path {{index+1}}
                 <div slot="content">
   
-                  <Row v-for="(cert, cindex) in item" :key="cindex" :name="''+icndex" type="flex" justify="start" align="bottom" style="margin-top:0em;margin-left:0.8em;">
+                  <Row v-for="(cert, cindex) in item" :key="cindex" :name="''+cindex" type="flex" justify="start" align="bottom" style="margin-top:0em;margin-left:0.8em;">
                     <Col span="8" align="right" style="margin-top:0.2em;" offset="0">
                     <p style="font-size:1em;font-weight:bolder"> {{cert.id}}</p>
   
@@ -159,54 +161,54 @@
         ],
   
         nodes: [{
-            id: 1,
+            id: "a",
             name: 'Apple',
             _size: 50,
             _color: "red"
           },
           {
-            id: 2,
+            id: "b",
             _size: 30,
             name: '	StartCom Class 1 DV Server CA'
           },
           {
-            id: 3,
+            id: "c",
             _size: 40,
             name: 'StartCom Certification Authority',
           },
           {
-            id: 4,
+            id: "d",
             _size: 40,
             name: 'zzStartCom Certification Authority G2'
           },
           {
-            id: 5,
+            id: "e",
             name: 'www.ajsmarketing.com'
           }
         ],
         links: [{
-            sid: 1,
-            tid: 3,
+            sid: "a",
+            tid: "c",
             _color: 'ce3d31',
           },
           {
-            sid: 1,
-            tid: 4,
+            sid: "a",
+            tid: "d",
             _color: 'ce3d31'
           },
           {
-            sid: 3,
-            tid: 4,
+            sid: "c",
+            tid: "d",
             _color: 'ce3d31'
           },
           {
-            sid: 3,
-            tid: 2,
+            sid: "c",
+            tid: "b",
             _color: 'ce3d31'
           },
           {
-            sid: 2,
-            tid: 5,
+            sid: "b",
+            tid: "e",
             _color: 'ce3d31'
           }
         ],
@@ -301,32 +303,45 @@
   
     },
     mounted() {
-      // this.$toast.info('正在加载', 'Info', {
-      //         position: 'topCenter',
-      //         timeout:3000,
-      //       });
-      //   new Promise(resolve => {
-      //     setTimeout(() => {
+      this.cert = this.$ls.get("selectedCert");
+     
   
-      //       this.$toast.success('加载成功', 'Info', {
-      //         position: 'topCenter',
-      //       });
-      //       this.loading=false;
+      this.$Loading.start();
+      this.$request.get('/api/v1/getpath?id=' + this.cert._id.$oid + "&root_store=Apple")
+        .then((response) => {
+          let state = response.data.state;
+          if (state) {
   
-      //     }, 3000);
-      //   });
+            //this.$toast.success('检索到' + response.data.total + "条数据", 'Info', this.notificationSystem.options.info);
+            this.$Loading.finish();
+            this.links = response.data.links
+            this. nodes = response.data.nodes
+          
+            console.log("reponse",response.data)
+           // this.results = this.results.concat(response.data.data);
+            // console.log(this.results.length)
+            //this.total = response.data.total
+            //return response
+  
+          } else {
+  
+            this.$toast.success('未检索到更多数据!', 'Info', this.notificationSystem.options.info);
+            this.$Loading.finish();
+          }
+        }).catch((error) => {
+          console.log(error);
+          this.$Loading.error();
+          this.$Message.error('服务器繁忙');
+        });
+  
+      //a.map(function (x) {x.call=3;return x});
+  
     },
     methods: {
       search() {
   
       },
-      lcb(link) {
-        link._svgAttrs = {
-          'marker-end': 'url(#m-end)',
-          'marker-start': 'url(#m-start)'
-        }
-        return link
-      }
+  
     },
     components: {
       D3Network
@@ -337,19 +352,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .link {}
-  
-  
-  /* .backgroundac {
-                          transition: all ease-in-out 0.6s;
-                          filter: blur(15px);
-                        }
-                        
-                        .backgroundacde {
-                          filter: blur(0px);
-                          transition: all ease-in-out 0.6s;
-                        } */
-  
   pre {
     white-space: pre-wrap;
     white-space: -moz-pre-wrap;
@@ -373,7 +375,6 @@
     opacity: 0.8;
     font-size: 1.2em;
     user-select: none;
-   
     text-shadow: black 0.1em 0.1em 2em;
   }
   
