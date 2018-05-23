@@ -9,12 +9,13 @@ import logging
 import ujson
 from bson import Binary, Code
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
-
+from bson.objectid import ObjectId
 import os
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.serialization import Encoding
 from cryptography import x509
 import functools
+import queue
 
 app = Sanic()
 app.config.REQUEST_TIMEOUT = 30
@@ -44,7 +45,7 @@ async def search(request):
         f1 = open("temp", "wb")
         f1.write(cert.public_bytes(encoding=Encoding.DER))
         f1.close()
-        p1 = os.popen('asn1dump temp1')
+        p1 = os.popen('asn1dump temp')
         asn1 = p1.read()
         resp["data"] = asn1
         resp["state"] = True 
@@ -67,7 +68,7 @@ async def search(request):
         f1 = open("temp", "wb")
         f1.write(cert.public_bytes(encoding=Encoding.PEM))
         f1.close()
-        p1 = os.popen('openssl x509 -noout -text -in temp2')
+        p1 = os.popen('openssl x509 -noout -text -in temp')
         asn1 = p1.read()
         resp["data"] = asn1
         resp["state"] = True 
@@ -101,6 +102,51 @@ async def search(request):
         pass
   
     return json(eval(dumps(resp).replace("false","False").replace("true","True")))
+
+def fix_code(cert):
+    return eval(dumps(cert).replace("false","False").replace("true","True"))
+
+
+@app.get("/v1/getpath")
+async def get_path(request):
+   
+    try:
+        res = {}
+        current_id = request.args.get('id', "")
+        
+   
+        root =  await app.db.https.find_one({'_id': ObjectId(current_id.replace(" ",''))})
+        _root = fix_code(root)
+        
+        _queue = queue.Queue()
+        _queue.put((current_id , _root['issuer']['cn']))
+        while (not _queue.empty()):
+            _current_id, _cn = _queue.get()
+            if not res.get(_current_id, None):  
+                res[_current_id] = {"data":_current_id, "upper":[]}
+            _nodes =  app.db.https.find({'subject.cn': _cn})
+            _upper_list = await _nodes.to_list(None)
+            for _upper in _upper_list:
+                temp = fix_code(_upper)
+                res[_current_id]['upper'].append(temp['_id']['$oid'])
+                if (temp['issuer']['cn'] == temp['subject']['cn']):
+                    print("success")
+                    continue
+                _queue.put((temp['_id']['$oid'] , temp['issuer']['cn']))
+
+
+
+        # temp =  app.db.https.find({"$text":{ "$search": keywords }})
+        # resp['total'] = await temp.count()
+        # resp["data"] = await temp.limit(limit).skip(skip).to_list(None)
+        # resp["state"] = True
+       
+       
+    except Exception as e:
+        traceback.print_exc()
+        pass
+  
+    return json({"status":True,"data":res})
 
 
 if __name__ == "__main__":

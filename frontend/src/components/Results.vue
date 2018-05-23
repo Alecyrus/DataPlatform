@@ -208,7 +208,7 @@
                     </Col>
                     <Col span="20" align="left" style="margin-left:0.5em;" offset="0">
   
-                    <p style="font-size:1em;">{{ item.extensions.subjectalternativename.dnsnames.join(",")}}</p>
+                    <p style="font-size:1em;word-break:break-all;">{{ item.extensions.subjectalternativename.dnsnames.join(",")}}</p>
   
                     </Col>
                   </Row>
@@ -344,44 +344,6 @@
         requestLimit: 6,
         total: 0,
         results: [],
-        certlist: [{
-            title: "C=GB, ST=London, L=London, O=Macfarlanes LLP, OU=IT, CN=da.macfarlanes.com",
-            Issuer: "thawte SSL CA - G2 ",
-            Date: "2016-10-07 – 2019-10-07 ",
-            domain: "da.macfarlanes.com "
-          },
-          {
-            title: "C=GB, ST=London, L=London, O=Macfarlanes LLP, OU=IT, CN=da.macfarlanes.com",
-            Issuer: "thawte SSL CA - G2 ",
-            Date: "2016-10-07 – 2019-10-07 ",
-            domain: "da.macfarlanes.com "
-          },
-          {
-            title: "C=GB, ST=London, L=London, O=Macfarlanes LLP, OU=IT, CN=da.macfarlanes.com",
-            Issuer: "thawte SSL CA - G2 ",
-            Date: "2016-10-07 – 2019-10-07 ",
-            domain: "da.macfarlanes.com "
-          },
-          {
-            title: "C=GB, ST=London, L=London, O=Macfarlanes LLP, OU=IT, CN=da.macfarlanes.com",
-            Issuer: "thawte SSL CA - G2 ",
-            Date: "2016-10-07 – 2019-10-07 ",
-            domain: "da.macfarlanes.com "
-          },
-          {
-            title: "C=GB, ST=London, L=London, O=Macfarlanes LLP, OU=IT, CN=da.macfarlanes.com",
-            Issuer: "thawte SSL CA - G2 ",
-            Date: "2016-10-07 – 2019-10-07 ",
-            domain: "da.macfarlanes.com "
-          },
-          {
-            title: "C=GB, ST=London, L=London, O=Macfarlanes LLP, OU=IT, CN=da.macfarlanes.com",
-            Issuer: "thawte SSL CA - G2 ",
-            Date: "2016-10-07 – 2019-10-07 ",
-            domain: "da.macfarlanes.com "
-          },
-  
-        ],
         issuer: "",
         issuerList: [{
             value: '1',
@@ -521,6 +483,7 @@
       }
     },
     methods: {
+
       hassan(cert) {
         return cert.extensions.subjectalternativename.dnsnames.length
       },

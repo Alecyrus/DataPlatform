@@ -228,8 +228,8 @@
     },
     created() {
       this.cert = this.$ls.get("selectedCert");
-      console.log(this.cert.notbefore.$date);
-      console.log(this.cert.extensions.subjectalternativename.dnsnames.length);
+      //console.log(this.cert.notbefore.$date);
+      //console.log(this.cert.extensions.subjectalternativename.dnsnames.length);
     },
     computed: {
       namelist() {

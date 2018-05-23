@@ -173,7 +173,6 @@
             id: 3,
             _size: 40,
             name: 'StartCom Certification Authority',
-  
           },
           {
             id: 4,
