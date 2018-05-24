@@ -27,7 +27,7 @@ The Frontend For My Graduation Project
       - [X] DER
       - [X] RAW
     - [ ] 探索
-      - [ ] CA 机构
+      - [X] CA 机构
       - [ ] 相关证书
       - [ ] 谁在使用这个证书?
 - [ ] 报告页

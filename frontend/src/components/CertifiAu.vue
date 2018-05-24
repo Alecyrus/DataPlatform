@@ -12,9 +12,20 @@
   
       <Col span="18" align="left" style="margin-top:0em;margin-bottom:0em;background-color:;" offset="0">
   
-      <div>
+      <div class="parent">
         <tree :type="treetype" :data="tree" :radius="nodesize" node-text="name" :zoomable="true" style="height:700px; width:100%;" :layoutType="layoutype">
         </tree>
+        <div v-if="loading"  class="mask">
+  
+          <Row type="flex" align="top" justify="center" style="margin-top:20em;background-color:;">
+            <Col span="18" align="center" style="margin-top:0em;margin-bottom:0em;background-color:;" offset="0">
+  
+            <Spinner  name="line-scale-pulse-out" width="100" height="100" color="#ce3d31" />
+  
+            </Col>
+          </Row>
+  
+        </div>
       </div>
   
       </Col>
@@ -24,14 +35,14 @@
         <Col span="22" align="center" style="margin-top:2em;margin-bottom:0em" offset="0">
   
         <!-- <Tooltip content="下载" placement="right">
-            <Button type="ghost" shape="circle" size="large"><awe-icon name="download"  scale="1.3" ></awe-icon></Button>
-          </Tooltip>
-  
+                    <Button type="ghost" shape="circle" size="large"><awe-icon name="download"  scale="1.3" ></awe-icon></Button>
+                  </Tooltip>
           
-     -->
+                  
+             -->
   
         <!-- <Row type="flex" align="top" justify="center" style="margin-top:0em;">
-          <Col span="16" align="center" style="margin-top:1em;margin-bottom:0em" offset="0"> -->
+                  <Col span="16" align="center" style="margin-top:1em;margin-bottom:0em" offset="0"> -->
         <Card class="smmary" style="width:100%">
           <Row type="flex" align="top" justify="start" style="margin-top:0em;">
             <Col span="10" align="left" style="margin-bottom:0em" offset="0">
@@ -44,44 +55,44 @@
             </Col>
             <Col span="16" align="left" style="margin-bottom:0em" offset="2">
             <RadioGroup v-model="layoutype">
-              <Radio label="circular" ></Radio>
+              <Radio label="circular"></Radio>
               <Radio label="euclidean"></Radio>
             </RadioGroup>
             </Col>
           </Row>
-
-           <Row type="flex" align="top" justify="start" style="margin-top:1em;">
+  
+          <Row type="flex" align="top" justify="start" style="margin-top:1em;">
             <Col span="4" align="right" style="margin-bottom:0em" offset="2">
             <p class="brands">布局</p>
             </Col>
             <Col span="16" align="left" style="margin-bottom:0em" offset="2">
             <RadioGroup v-model="treetype">
-              <Radio label="tree" ></Radio>
+              <Radio label="tree"></Radio>
               <Radio label="cluster"></Radio>
             </RadioGroup>
             </Col>
           </Row>
-
-           <Row type="flex" align="top" justify="start" style="margin-top:1em;">
+  
+          <Row type="flex" align="top" justify="start" style="margin-top:1em;">
             <Col span="5" align="right" style="margin-bottom:0em" offset="1">
             <p class="brands">节点大小</p>
             </Col>
             <Col span="16" align="left" style="margin-bottom:0em" offset="2">
             <!-- <Slider v-model="nodesize"  max='10' min='1'></Slider> -->
-              <Slider v-model="nodesize"  :max='10' :min='1'></Slider>
+            <Slider v-model="nodesize" :max='10' :min='1'></Slider>
             </Col>
           </Row>
-          
-
-           <!-- <Row type="flex" align="top" justify="start" style="margin-top:1em;">
-            <Col span="4" align="right" style="margin-bottom:0em" offset="2">
-            <p class="brands"> 缩放</p>
-            </Col>
-            <Col span="16" align="left" style="margin-bottom:0em" offset="2">
-                   <i-switch v-model="zoomable" ></i-switch>
-            </Col>
-          </Row> -->
-
+  
+  
+          <!-- <Row type="flex" align="top" justify="start" style="margin-top:1em;">
+                    <Col span="4" align="right" style="margin-bottom:0em" offset="2">
+                    <p class="brands"> 缩放</p>
+                    </Col>
+                    <Col span="16" align="left" style="margin-bottom:0em" offset="2">
+                           <i-switch v-model="zoomable" ></i-switch>
+                    </Col>
+                  </Row> -->
+  
   
   
   
@@ -127,35 +138,10 @@
     data() {
       return {
         // zoomable:false,
-        treetype:"tree",
-        nodesize:3,
-        layoutype:"euclidean",
+        treetype: "tree",
+        nodesize: 3,
+        layoutype: "euclidean",
         tree: {
-          name: "StartCom Class 1 DV Server CA",
-          children: [{
-            name: "son1",
-            children: [{
-              name: "StartCom Class 1 DV Server CA"
-            }, {
-              name: "StartCom Class 1 DV Server CA"
-            }]
-          }, {
-            name: "StartCom Class 1 DV Server CA",
-            children: [{
-              name: "StartCom Class 1 DV Server CA",
-              children: [{
-                name: "grandsoStartCom Class 1 DV Server CAn3"
-              }, {
-                name: "StartCom Class 1 DV Server CA",
-  
-  
-              }]
-            }, {
-              name: "StartCom Class 1 DV Server CA",
-  
-  
-            }]
-          }]
         },
         notificationSystem: {
           options: {
@@ -238,7 +224,67 @@
       }
   
     },
+    computed: {
+      loading() {
+        if (! this.tree.name) {
+          return true
+        }
+        else{
+          return false
+        }
+      }
+  },
     mounted() {
+      this.cert = this.$ls.get("selectedCert");
+  
+  
+      this.$Loading.start();
+      this.$request.get('/api/v1/getpath?id=' + this.cert._id.$oid + "&root_store=Apple")
+        .then((response) => {
+          let state = response.data.state;
+          if (state) {
+  
+  
+            this.$request.post('/api/v1/getca', {
+                root_cn: response.data.rootcns,
+                end_user: true
+  
+              })
+              .then((response) => {
+                let state = response.data.state;
+                if (state) {
+                  this.$toast.success('加载成功!', 'Info', this.notificationSystem.options.info);
+                  this.$Loading.finish();
+                  this.tree = response.data.tree
+  
+                } else {
+  
+                  this.$toast.success('未检索到更多数据!', 'Info', this.notificationSystem.options.info);
+                  this.$Loading.finish();
+                }
+              }).catch((error) => {
+                console.log(error);
+                this.$Loading.error();
+                this.$Message.error('服务器繁忙');
+              });
+  
+  
+  
+  
+  
+  
+          } else {
+  
+            this.$toast.success('未检索到更多数据!', 'Info', this.notificationSystem.options.info);
+            this.$Loading.finish();
+          }
+        }).catch((error) => {
+          console.log(error);
+          this.$Loading.error();
+          this.$Message.error('服务器繁忙');
+        });
+  
+  
   
     },
     methods: {
@@ -299,4 +345,29 @@
     text-shadow: black 0.1em 0.1em 2em;
     margin-left: 0.5em;
   }
+  
+  .parent {
+    position: relative;
+    z-index: 0
+  }
+  
+  .mask {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    /* background-color: #10AEFF; */
+    
+    /* opacity: 0; */
+  }
+  
+  
+  /*hover状态（按你的需求）控制显示。opacity/display/z-index都可以*/
+  
+  
+  /* .parent:hover .mask {
+      opacity: .5;
+    } */
 </style>

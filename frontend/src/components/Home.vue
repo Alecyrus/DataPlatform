@@ -34,7 +34,7 @@
   
         <Row type="flex" align="middle" justify="start" style="margin-top:3em;">
           <Col span="8" align="left" offset="5">
-          <input autocomplete="off" v-model="searchKeywords" spellcheck="false" type="text" placeholder="输入IPv4地址或域名字符串" class="ivu-input shadow search ivu-input-large">
+          <input autocomplete="on" v-model="searchKeywords"  @keyup.enter="search" spellcheck="false" type="text" placeholder="输入IPv4地址或域名字符串" class="ivu-input shadow search ivu-input-large">
           </input>
           </Col>
   

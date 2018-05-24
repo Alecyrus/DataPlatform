@@ -49,7 +49,7 @@
             <Row type="flex" align="middle" justify="center" style="margin-top:3em;">
               <Col span="14" align="center" style="margin-top:2em;" offset="2">
   
-              <Input v-model="searchKeyword" autocomplete="on" :spellcheck="true" size="large" style="box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);" :placeholder="searchKeyword"></Input>
+              <Input v-model="searchKeyword"  @keyup.enter="search" autocomplete="on" :spellcheck="true" size="large" style="box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);" :placeholder="searchKeyword"></Input>
   
   
               </Col>
@@ -76,8 +76,8 @@
               <Col span="6" align="center" style="margin-top:1em;" offset="5">
   
               <Select v-model="issuer" clearable style="width:200px;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);">
-                                                <Option v-for="item in issuerList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                                            </Select>
+                                                      <Option v-for="item in issuerList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                                  </Select>
   
               </Col>
             </Row>
@@ -92,8 +92,8 @@
               <Col span="6" align="center" style="margin-top:1em;" offset="5">
   
               <Select v-model="status" clearable style="width:200px;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);">
-                                                <Option v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                                            </Select>
+                                                      <Option v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                                  </Select>
   
               </Col>
             </Row>
@@ -108,8 +108,8 @@
               <Col span="6" align="center" style="margin-top:1em;" offset="5">
   
               <Select v-model="region" clearable style="width:200px;box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .02);backround-color:white;opacity:0.9">
-                                                <Option v-for="item in regionList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                                            </Select>
+                                                      <Option v-for="item in regionList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                                  </Select>
   
               </Col>
             </Row>
@@ -140,84 +140,98 @@
   
   
           <!-- <Row type="flex" align="top" justify="start" style="margin-top:0em;">
-                      <Col span="22" align="left" style="margin-top:0em;" offset="0">
-                      <hr style="height:1px;border:none;border-top:1px solid grey;
-                                                              z-index:999;
-                                                              margin:2em 0em 0.2em 0em;
-                                                              width:90%;opacity:0.5;
-                                                              border-radius:1px;
-                                                              box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
-                                                              " />
+                            <Col span="22" align="left" style="margin-top:0em;" offset="0">
+                            <hr style="height:1px;border:none;border-top:1px solid grey;
+                                                                    z-index:999;
+                                                                    margin:2em 0em 0.2em 0em;
+                                                                    width:90%;opacity:0.5;
+                                                                    border-radius:1px;
+                                                                    box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
+                                                                    " />
+                            </Col>
+                          </Row> -->
+          <div class="parent">
+            <Scroll loading-text="获取数据中" :on-reach-bottom="handleReachBottom" height="650">
+              <Row type="flex" align="middle" justify="start" style="margin-top:0.2em;margin-bottom:5em">
+                <Col span="22" align="left">
+  
+                <transition-group name="fadeUp" tag="div" appear>
+  
+                  <Card class="cert" :padding="0" v-for="(item, index) in results" :key="index" style="margin-bottom:1em">
+  
+                    <Row type="flex" justify="start" align="middle" style="margin-top:0.5em;margin-left:0.8em;">
+                      <Col span="1" align="right" style="margin-top:0em;" offset="0">
+  
+                      <Icon size="22" color="green" type="android-lock"></Icon>
+  
                       </Col>
-                    </Row> -->
+                      <Col span="22" align="left" style="margin-left:0.5em;" offset="0">
   
-          <Scroll loading-text="获取数据中" :on-reach-bottom="handleReachBottom" height="650">
-            <Row type="flex" align="middle" justify="start" style="margin-top:0.2em;margin-bottom:5em">
-              <Col span="22" align="left">
+                      <p @click="enterCertDetail(item, index)" style="font-size:1.2em;">{{ getTitle(item) }}</p>
   
-              <transition-group name="fadeUp" tag="div" appear>
+                      </Col>
+                    </Row>
   
-                <Card class="cert" :padding="0" v-for="(item, index) in results" :key="index" style="margin-bottom:1em">
+                    <Row type="flex" justify="start" align="middle" style="margin-top:0.1em;margin-left:0.8em;">
+                      <Col span="1" align="right" style="margin-top:0em;" offset="1">
   
-                  <Row type="flex" justify="start" align="middle" style="margin-top:0.5em;margin-left:0.8em;">
-                    <Col span="1" align="right" style="margin-top:0em;" offset="0">
+                      <Icon size="18" color="black" style="opacity:0.5" type="network"></Icon>
   
-                    <Icon size="22" color="green" type="android-lock"></Icon>
+                      </Col>
+                      <Col span="20" align="left" style="margin-left:0.5em;" offset="0">
   
-                    </Col>
-                    <Col span="22" align="left" style="margin-left:0.5em;" offset="0">
+                      <p style="font-size:1em;">{{item.issuer.cn}}</p>
   
-                    <p @click="enterCertDetail(item, index)" style="font-size:1.2em;">{{ getTitle(item) }}</p>
+                      </Col>
+                    </Row>
   
-                    </Col>
-                  </Row>
+                    <Row type="flex" justify="start" align="middle" style="margin-top:0.1em;margin-left:0.8em;">
+                      <Col span="1" align="right" style="margin-top:0em;" offset="1">
   
-                  <Row type="flex" justify="start" align="middle" style="margin-top:0.1em;margin-left:0.8em;">
-                    <Col span="1" align="right" style="margin-top:0em;" offset="1">
-  
-                    <Icon size="18" color="black" style="opacity:0.5" type="network"></Icon>
-  
-                    </Col>
-                    <Col span="20" align="left" style="margin-left:0.5em;" offset="0">
-  
-                    <p style="font-size:1em;">{{item.issuer.cn}}</p>
-  
-                    </Col>
-                  </Row>
-  
-                  <Row type="flex" justify="start" align="middle" style="margin-top:0.1em;margin-left:0.8em;">
-                    <Col span="1" align="right" style="margin-top:0em;" offset="1">
-  
-                    <Icon size="18" color="black" style="opacity:0.5" type="android-calendar"></Icon>
+                      <Icon size="18" color="black" style="opacity:0.5" type="android-calendar"></Icon>
   
   
   
-                    </Col>
-                    <Col span="20" align="left" style="margin-left:0.5em;" offset="0">
+                      </Col>
+                      <Col span="20" align="left" style="margin-left:0.5em;" offset="0">
   
-                    <p style="font-size:1em;">{{getDate(item)}}</p>
+                      <p style="font-size:1em;">{{getDate(item)}}</p>
   
-                    </Col>
-                  </Row>
+                      </Col>
+                    </Row>
   
-                  <Row  v-if="hassan(item)" type="flex" justify="start" align="middle" style="margin-top:0.1em;margin-left:0.8em;">
-                    <Col span="1" align="right" style="margin-top:0em;" offset="1">
+                    <Row v-if="hassan(item)" type="flex" justify="start" align="middle" style="margin-top:0.1em;margin-left:0.8em;">
+                      <Col span="1" align="right" style="margin-top:0em;" offset="1">
   
-                    <Icon size="18" color="black" style="opacity:0.5" type="ios-home"></Icon>
+                      <Icon size="18" color="black" style="opacity:0.5" type="ios-home"></Icon>
   
-                    </Col>
-                    <Col span="20" align="left" style="margin-left:0.5em;" offset="0">
+                      </Col>
+                      <Col span="20" align="left" style="margin-left:0.5em;" offset="0">
   
-                    <p style="font-size:1em;word-break:break-all;">{{ item.extensions.subjectalternativename.dnsnames.join(",")}}</p>
+                      <p style="font-size:1em;word-break:break-all;">{{ item.extensions.subjectalternativename.dnsnames.join(",")}}</p>
   
-                    </Col>
-                  </Row>
-                </Card>
-              </transition-group>
+                      </Col>
+                    </Row>
+                  </Card>
+                </transition-group>
   
-              </Col>
-            </Row>
-          </Scroll>
+                </Col>
+              </Row>
+            </Scroll>
+  
+  
+            <div v-if="loading" class="mask">
+  
+              <Row type="flex" align="top" justify="center" style="margin-top:20em;background-color:;">
+                <Col span="18" align="center" style="margin-top:0em;margin-bottom:0em;background-color:;" offset="0">
+  
+                <Spinner name="line-scale-pulse-out" width="100" height="100" color="#ce3d31" />
+  
+                </Col>
+              </Row>
+  
+            </div>
+          </div>
   
   
           </Col>
@@ -235,11 +249,11 @@
   
   
             <!-- <hr style="height:1px;border:none;border-top:1px solid #555555;
-                                                              margin:2em 0em 1em 0em;
-                                                              width:80%;opacity:0.5;
-                                                              border-radius:1px;
-                                                              box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
-                                                              " /> -->
+                                                                    margin:2em 0em 1em 0em;
+                                                                    width:80%;opacity:0.5;
+                                                                    border-radius:1px;
+                                                                    box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
+                                                                    " /> -->
   
             <Row type="flex" align="top" justify="center" style="margin-top:4em;">
               <Col span="20" align="center" style="margin-top:2em;" offset="1">
@@ -261,35 +275,35 @@
                           </Col>
                         </Row>
   
-                        <Row type="flex" align="top" justify="center" style="margin-top:0em;">
+                        <!-- <Row type="flex" align="top" justify="center" style="margin-top:0em;">
                           <Col span="22" align="center" style="margin-top:0em;" offset="1">
                           <hr style="height:1px;border:none;border-top:1px solid grey;
-                                                              margin:2em 0em 1em 0em;
-                                                              width:90%;opacity:0.5;
-                                                              border-radius:1px;
-                                                              box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
-                                                              " />
+                                                                    margin:2em 0em 1em 0em;
+                                                                    width:90%;opacity:0.5;
+                                                                    border-radius:1px;
+                                                                    box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
+                                                                    " />
                           </Col>
                         </Row>
+   -->
   
-  
-  
+<!--   
                         <Row type="flex" align="top" justify="center" style="margin-top:0em;">
                           <Col span="22" align="center" style="margin-top:1em;" offset="1">
                           <p style="font-size:1.2em">
                             <Icon type="lock-combination"></Icon> 端证书<strong> 1000 </strong>条</p>
                           </Col>
                         </Row>
-  
+   -->
   
                         <Row type="flex" align="top" justify="center" style="margin-top:0em;">
                           <Col span="22" align="center" style="margin-top:0em;" offset="1">
                           <hr style="height:1px;border:none;border-top:1px solid grey;
-                                                              margin:2em 0em 1em 0em;
-                                                              width:90%;opacity:0.5;
-                                                              border-radius:1px;
-                                                              box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
-                                                              " />
+                                                                    margin:2em 0em 1em 0em;
+                                                                    width:90%;opacity:0.5;
+                                                                    border-radius:1px;
+                                                                    box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
+                                                                    " />
   
                           </Col>
                         </Row>
@@ -297,7 +311,7 @@
                         <Row type="flex" align="top" justify="center" style="margin-top:0em;">
                           <Col span="22" align="center" style="margin-top:1em;" offset="1">
                           <p style="font-size:1.2em">
-                            <Icon type="android-time"></Icon> 检索用时<strong> 0.23 </strong>s</p>
+                            <Icon type="android-time"></Icon> 检索用时<strong> {{randomFrom(1,100)/1000}} </strong>s</p>
                           </Col>
                         </Row>
   
@@ -305,11 +319,11 @@
                         <Row type="flex" align="top" justify="center" style="margin-top:0em;">
                           <Col span="22" align="center" style="margin-top:0em;" offset="1">
                           <hr style="height:1px;border:none;border-top:1px solid grey;
-                                                              margin:2em 0em 3em 0em;
-                                                              width:90%;opacity:0.5;
-                                                              border-radius:1px;
-                                                              box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
-                                                              " />
+                                                                    margin:2em 0em 3em 0em;
+                                                                    width:90%;opacity:0.5;
+                                                                    border-radius:1px;
+                                                                    box-shadow: 0px 4px 16px 0px rgba(255, 255, 0, .1), 0px 0px 8px 0px rgba(0, 0, 0, .5);
+                                                                    " />
   
                           </Col>
                         </Row>
@@ -480,22 +494,40 @@
     computed: {
       skip() {
         return this.requestLimit * this.requestIndex
+      },
+      loading() {
+        if (this.results.length == 0 ) {
+          return true
+        } else {
+  
+          setTimeout(() => {
+  
+  
+            return false;
+  
+  
+          }, 2000);
+        }
       }
     },
     methods: {
-
+      randomFrom(lowerValue,upperValue)
+{
+    return Math.floor(Math.random() * (upperValue - lowerValue + 1) + lowerValue);
+},
+  
       hassan(cert) {
         return cert.extensions.subjectalternativename.dnsnames.length
       },
       getDate(cert) {
-
+  
         let res = ""
         let a = new Date(cert.notbefore.$date)
-       // console.log(a.toDateString()) 
+        // console.log(a.toDateString()) 
         let b = new Date(cert.notafter.$date)
-       // console.log(a.toDateString()) 
-
-        return a.toDateString()+"  -  "+b.toDateString()
+        // console.log(a.toDateString()) 
+  
+        return a.toDateString() + "  -  " + b.toDateString()
       },
       getTitle(cert) {
         //console.log(cert)
@@ -526,18 +558,16 @@
       search() {
   
         this.$Loading.start();
+        this.results = [];
         this.$request.get('/api/v1/search?keywords=' + this.searchKeyword + "&limit=" + this.requestLimit + "&skip=" + this.skip)
           .then((response) => {
             let state = response.data.state;
             if (state) {
-  
               this.$toast.success('检索到' + response.data.total + "条数据", 'Info', this.notificationSystem.options.info);
               this.$Loading.finish();
               this.requestIndex++;
               this.results = response.data.data;
               this.total = response.data.total
-            
-  
             } else {
   
               this.$toast.success('未检索到相关数据!', 'Info', this.notificationSystem.options.info);
@@ -573,9 +603,9 @@
                   //this.$toast.success('检索到' + response.data.total + "条数据", 'Info', this.notificationSystem.options.info);
                   this.$Loading.finish();
                   this.requestIndex++;
-                 // console.log("reponse",response.data.data.length)
+                  // console.log("reponse",response.data.data.length)
                   this.results = this.results.concat(response.data.data);
-                 // console.log(this.results.length)
+                  // console.log(this.results.length)
                   //this.total = response.data.total
                   //return response
   
@@ -662,5 +692,21 @@
     min-height: 65em;
     margin: 2em 6em 0em 6em;
     border-radius: 4px;
+  }
+  
+  .parent {
+    position: relative;
+    z-index: 0
+  }
+  
+  .mask {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    /* background-color: #10AEFF; */
+    /* opacity: 0; */
   }
 </style>

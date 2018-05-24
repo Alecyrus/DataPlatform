@@ -4,9 +4,22 @@
     <Row type="flex" align="top" justify="start" style="margin-top:0em;background-color:;">
   
       <Col span="15" align="left" style="margin-top:0em;margin-bottom:0em;background-color:;" offset="0">
+      <div class="parent">
+        <d3-network :net-nodes="nodes" :net-links="links" :options="options" />
   
-      <d3-network :net-nodes="nodes" :net-links="links" :options="options" />
   
+        <div v-if="loading" class="mask">
+  
+          <Row type="flex" align="top" justify="center" style="margin-top:20em;background-color:;">
+            <Col span="18" align="center" style="margin-top:0em;margin-bottom:0em;background-color:;" offset="0">
+  
+            <Spinner name="line-scale-pulse-out" width="100" height="100" color="#ce3d31" />
+  
+            </Col>
+          </Row>
+  
+        </div>
+      </div>
   
       </Col>
   
@@ -160,58 +173,8 @@
   
         ],
   
-        nodes: [{
-            id: "a",
-            name: 'Apple',
-            _size: 50,
-            _color: "red"
-          },
-          {
-            id: "b",
-            _size: 30,
-            name: '	StartCom Class 1 DV Server CA'
-          },
-          {
-            id: "c",
-            _size: 40,
-            name: 'StartCom Certification Authority',
-          },
-          {
-            id: "d",
-            _size: 40,
-            name: 'zzStartCom Certification Authority G2'
-          },
-          {
-            id: "e",
-            name: 'www.ajsmarketing.com'
-          }
-        ],
-        links: [{
-            sid: "a",
-            tid: "c",
-            _color: 'ce3d31',
-          },
-          {
-            sid: "a",
-            tid: "d",
-            _color: 'ce3d31'
-          },
-          {
-            sid: "c",
-            tid: "d",
-            _color: 'ce3d31'
-          },
-          {
-            sid: "c",
-            tid: "b",
-            _color: 'ce3d31'
-          },
-          {
-            sid: "b",
-            tid: "e",
-            _color: 'ce3d31'
-          }
-        ],
+        nodes: [],
+        links: [],
         options: {
           force: 9000,
           nodeSize: 20,
@@ -304,7 +267,7 @@
     },
     mounted() {
       this.cert = this.$ls.get("selectedCert");
-     
+  
   
       this.$Loading.start();
       this.$request.get('/api/v1/getpath?id=' + this.cert._id.$oid + "&root_store=Apple")
@@ -315,10 +278,10 @@
             //this.$toast.success('检索到' + response.data.total + "条数据", 'Info', this.notificationSystem.options.info);
             this.$Loading.finish();
             this.links = response.data.links
-            this. nodes = response.data.nodes
-          
-            console.log("reponse",response.data)
-           // this.results = this.results.concat(response.data.data);
+            this.nodes = response.data.nodes
+  
+            console.log("reponse", response.data)
+            // this.results = this.results.concat(response.data.data);
             // console.log(this.results.length)
             //this.total = response.data.total
             //return response
@@ -342,6 +305,15 @@
   
       },
   
+    },
+    computed: {
+      loading() {
+        if (this.nodes.length == 0) {
+          return true
+        } else {
+          return false
+        }
+      }
     },
     components: {
       D3Network
