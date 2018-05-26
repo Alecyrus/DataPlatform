@@ -81,7 +81,7 @@ async def search(request):
             content_html = f.read()
 
         mail = {
-            'subject': 'The Key from Spring Official',  # Anything you want.
+            'subject': 'The Key from SpringX Official',  # Anything you want.
             'content_html': content_html.replace("[key]", uuid.uuid4().hex).replace("Hello!", "Mr "+param['name']),  # Anything you want.
             # 'attachments': '/Users/zyh/Documents/example.zip',  # Absolute path will be better.
         }

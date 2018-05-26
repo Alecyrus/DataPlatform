@@ -42,8 +42,8 @@
       <mj-column width="100%">
         <mj-text>
           <p>Hello!</p>
-          <p> We are happy to inform you have gotten full access to all advanced features on SpringX. Having fun! </p>
-          <p> And yuo need to know the access key will be expired one month later.</p>
+          <p> We are glad to inform you that you already have full access to all advanced features on SpringX. Have fun! </p>
+          <p> And you need to know the access key will be expired one month later.</p>
         </mj-text>
       </mj-column>
     </mj-section>

@@ -129,11 +129,11 @@
                   <Row type="flex" align="middle" justify="end" style="margin-top:1em;margin-bottom:5em">
                     <Col span="18" align="right">
                     <p style="font-size:1.4em;">
-                      <br>我们采用
+                      <!-- <br>我们采用
                       <i>Kibana</i> 作为数据可视化分析套件，<br>Kibana 让您能够自由地选择如何呈现您的数据。
                       <br><br>支持多种可视化形式，柱状图、线状图、饼图、环形图，等等。<br>并且支持地理空间数据的可视化，
                       <br><br>借助Kibana精细的时序性 UI，<br>对您 Elasticsearch 中的数据执行高级时间序列分析。<br>您可以利用功能强大、简单易学的表达式来描述查询、转换和可视化。
-                      <br><br>
+                      <br><br> -->
                      
                     </p>
                     </Col>
