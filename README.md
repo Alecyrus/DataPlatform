@@ -8,6 +8,9 @@ The Frontend For My Graduation Project
     - [X] 版权信息
     - [X] 动画效果
     - [X] 连接后台
+- [X] 数据分析
+    - [X] 整合Elastic
+    - [X] 整合Kibana
 - [X] 搜索结果页
     - [X] 页面实现
     - [X] 动画效果
