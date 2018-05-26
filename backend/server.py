@@ -16,6 +16,10 @@ from cryptography.hazmat.primitives.serialization import Encoding
 from cryptography import x509
 import functools
 import queue
+import copy
+import zmail
+import uuid
+
 
 app = Sanic()
 app.config.REQUEST_TIMEOUT = 60
@@ -24,7 +28,14 @@ app.config.REQUEST_TIMEOUT = 60
 async def notify_server_started(app, loop):
     logging.info('Server successfully started!')
     app.conn = AsyncIOMotorClient(host='0.0.0.0', port=27017)
-    app.db = app.conn.internetinfo
+    app.db = app.conn.Interinfo
+    app.email = zmail.server('springx_official@163.com', 'aun123')
+    if app.email.smtp_able():
+        pass
+    # SMTP function.
+    if app.email.pop_able():
+        pass
+    # POP 
 
 @app.listener('before_server_stop')
 async def notify_server_stopping(app, loop):
@@ -55,6 +66,37 @@ async def search(request):
   
     return json(eval(dumps(resp).replace("false","False").replace("true","True")))
 
+
+#springx_official@163.com
+@app.post("/v1/getkey")
+async def search(request):
+    resp = {
+        "state":False
+    }
+    try:   
+        param = request.json
+        print(param)
+
+        with open('email.html','r') as f:
+            content_html = f.read()
+
+        mail = {
+            'subject': 'The Key from Spring Official',  # Anything you want.
+            'content_html': content_html.replace("[key]", uuid.uuid4().hex).replace("Hello!", "Mr "+param['name']),  # Anything you want.
+            # 'attachments': '/Users/zyh/Documents/example.zip',  # Absolute path will be better.
+        }
+        app.email.send_mail(param['email'],mail)
+
+        resp["state"] = True 
+    except Exception as e:
+        traceback.print_exc()
+        pass
+  
+    return json(eval(dumps(resp).replace("false","False").replace("true","True")))
+
+
+
+
 @app.post("/v1/openssl")
 async def search(request):
     resp = {
@@ -80,7 +122,7 @@ async def search(request):
 
 
 
-@app.get("/v1/search")
+@app.post("/v1/search")
 async def search(request):
     resp = {
         "data":[],
@@ -90,8 +132,13 @@ async def search(request):
         keywords = request.args.get('keywords', "")
         limit = int(request.args.get('limit',1))
         skip = int(request.args.get('skip',0))
+        fuzzy = int(request.args.get('fuzzy',1))
+        if not fuzzy:
+            _filter = request.json['filter']
+        else:
+            _filter = {"$text":{ "$search": keywords }}
 
-        temp =  app.db.https.find({"$text":{ "$search": keywords }})
+        temp =  app.db.certificate.find(_filter)
         resp['total'] = await temp.count()
         resp["data"] = await temp.limit(limit).skip(skip).to_list(None)
         resp["state"] = True
@@ -115,7 +162,7 @@ async def get_path(request):
         root_store = request.args.get('root_store', "default")
         
    
-        root =  await app.db.https.find_one({'_id': ObjectId(current_id.replace(" ",''))})
+        root =  await app.db.certificate.find_one({'_id': ObjectId(current_id.replace(" ",''))})
         _root = fix_code(root)
         
         _queue = queue.Queue()
@@ -124,7 +171,7 @@ async def get_path(request):
             _current_id, _cn_i, _cn_s = _queue.get()
             if not res.get(_current_id, None):  
                 res[_current_id] = {"name":_cn_s, "upper":[]}
-            _nodes =  app.db.https.find({'subject.cn': _cn_i})
+            _nodes =  app.db.certificate.find({'subject.cn': _cn_i})
             _upper_list = await _nodes.to_list(None)
             for _upper in _upper_list:
                 temp = fix_code(_upper)
@@ -148,10 +195,35 @@ async def get_path(request):
             if len(res[node]['upper']) == 0 and res[node]['name'] not in rootcns :
                 rootcns.append(res[node]['name'])
 
-
-
-
+        paths = [[{"id":current_id,"name":res[current_id]['name']}]]
+        qeu = queue.Queue()
+        qeu.put((len(paths)-1,current_id))
+        while (not qeu.empty()):
+            index, _current_id = qeu.get()
+           
+            _back = copy.deepcopy(paths[index])
         
+            for i in range(len(res[_current_id]['upper'])):
+             
+                if (i != len(res[_current_id]['upper'])-1 ):
+                    temp = copy.deepcopy(_back)
+                    temp.append({
+                        "name":res[res[_current_id]['upper'][i]]["name"],
+                        "id":res[_current_id]['upper'][i]
+                    })
+                    paths.append(temp)
+                    qeu.put((len(paths)-1, res[_current_id]['upper'][i]))
+                    continue
+               
+                paths[index].append({
+                        "name":res[res[_current_id]['upper'][i]]["name"],
+                        "id":res[_current_id]['upper'][i]
+                    })
+                qeu.put((index, res[_current_id]['upper'][i]))
+
+
+
+
 
         links = list()
         qq = queue.Queue()
@@ -182,7 +254,7 @@ async def get_path(request):
         state = False
         pass
   
-    return json({"state":state,"data":res, "nodes":nodes, "links":links, "rootcns":rootcns})
+    return json({"state":state,"data":res, "nodes":nodes, "links":links, "rootcns":rootcns, "paths":paths})
 
 @app.post("/v1/getca")
 async def get_ca(request):
@@ -200,9 +272,9 @@ async def get_ca(request):
             _tree, _current_cn = que.get()
             #print(_current_cn)
             if param['end_user']:
-                _nodes =  app.db.https.find({'issuer.cn': _current_cn,"extensions.basicconstraints.isca":True})
+                _nodes =  app.db.certificate.find({'issuer.cn': _current_cn,"extensions.basicconstraints.isca":True})
             else:
-                _nodes =  app.db.https.find({'issuer.cn': _current_cn})
+                _nodes =  app.db.certificate.find({'issuer.cn': _current_cn})
             _node_list = await _nodes.to_list(None)
             #print(len(_node_list), que.qsize())
 

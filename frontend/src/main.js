@@ -22,6 +22,7 @@ import Icon from 'vue-awesome/components/Icon'
 import Vuebar from 'vuebar';
 import Spinner from 'vue-spinkit'
 import VueClipboard from 'vue-clipboard2'
+import fullscreen from 'vue-fullscreen'
 
 
 Vue.use(VueClipboard)
@@ -33,7 +34,7 @@ Vue.component('Spinner', Spinner)
 Vue.use(Vuebar);
 Vue.component('awe-icon', Icon)
 Vue.use(VueIziToast);
-
+Vue.use(fullscreen)
 
 
 Vue.prototype.$highcharts = Highcharts;

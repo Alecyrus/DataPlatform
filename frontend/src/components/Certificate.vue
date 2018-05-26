@@ -50,7 +50,7 @@
   
             <Row type="flex" align="top" justify="start" style="margin-top:0em;">
               <Col span="8" align="center" style="margin-top:3em;" offset="4">
-              <p class="title2">www.baidu.com</p>
+              <p class="title2">{{i_title}}</p>
               </Col>
             </Row>
             <Row type="flex" align="top" justify="start" style="margin-top:0em;">
@@ -102,20 +102,16 @@
 </template>
                      <MenuItem name="certifiau">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CA 机构</MenuItem>
                      <MenuGroup  align="left" title="相关证书">
-                        <MenuItem  name="t42">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相同序列号</MenuItem>
-                        <MenuItem name="t43">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相同公钥</MenuItem>
-                        <MenuItem name="t44">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相同标识名称</MenuItem>
+                        <MenuItem  name="sameseri">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相同序列号</MenuItem>
+                        <MenuItem name="samepk">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相同公钥</MenuItem>
+                        <MenuItem name="samecn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相同标识名称</MenuItem>
                     </MenuGroup>
                     <MenuGroup title="谁在使用这个证书？">
-                        <MenuItem name="t45">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;域名</MenuItem>
-                        <MenuItem name="t46">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv4 地址</MenuItem>
+                        <MenuItem name="domains">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;域名</MenuItem>
+                        <MenuItem name="ipv4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv4 地址</MenuItem>
                     </MenuGroup>
                 </Submenu>
             </Menu>
-
-
-
-
               </Col>
             </Row>
   
@@ -181,6 +177,7 @@
       return {
         desc: "",
         contentTitle: "",
+      
         titleMap: {
           smmary: "总结",
           openssl: "Open SSL",
@@ -195,22 +192,31 @@
           pem: "PEM",
           der: "DER",
           certifiau: "CA 机构",
-          t42: "相同序列号",
-          t43: "相同公钥",
-          t44: "相同标识名称",
-          t45: "域名",
-          t46: "IPv4 地址",
+          domains: "域名",
+          ipv4: "IPv4 地址",
   
         },
 
   
       }
     },
-    mounted() {
+    created() {
 
+      this.cert = this.$ls.get("selectedCert");
+      //console.log(this.cert)
      
   
-  
+    },
+    computed:{
+         i_title() {
+          let id = this.cert._id.$oid
+          if (id.length > 12){
+            return id.substr(0,6) + "....." + id.substr(id.length-6);
+          } else {
+            return id
+          }
+
+      }
     },
     methods: {
       handleMenu() {

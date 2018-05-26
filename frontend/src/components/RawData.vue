@@ -9,8 +9,8 @@
             <Col span="18" align="left" style="margin-top:0em;margin-left:1em;background-color:;" offset="0">
     
     
-            <Tabs value="textshow">
-                <TabPane label="RAW JSON" name="raw">
+            <Tabs @on-click="getactive" :value="textshow">
+                <TabPane   @ label="RAW JSON" name="raw">
     
     
                     <Row type="flex" align="top" justify="start" style="margin-top:0em;background-color:;">
@@ -22,8 +22,7 @@
                                 <Col span="22" align="left" style="margin-top:0em;margin-bottom:0em;background-color:;" offset="1">
     
     
-                                <pre>
-                              {{rawJson}}
+                                <pre>{{rawJson}}
                                     </pre>
     
                                 </Col>
@@ -78,7 +77,7 @@
                 <Col span="24" align="center" style="margin-top:2em;margin-bottom:0em" offset="0">
     
                 <Tooltip content="下载" placement="right">
-                    <Button type="ghost" shape="circle" size="large"><awe-icon name="download"  scale="1.3" ></awe-icon></Button>
+                    <Button type="ghost" shape="circle" @click="downloadfile" size="large"><awe-icon name="download"  scale="1.3" ></awe-icon></Button>
                 </Tooltip>
     
                 </Col>
@@ -111,6 +110,8 @@
 </template>
 
 <script>
+
+    import filesaver from "../FileSaver.js"
     export default {
         data() {
             return {
@@ -118,7 +119,7 @@
                 textshow: "raw",
                 rawJson1: {}
                 ,
-                // loading: true,
+                loading: true,
                 notificationSystem: {
                     options: {
                         show: {
@@ -200,7 +201,7 @@
             }
     
         },
-        mounted() {
+        created() {
              this.rawJson1 = this.$ls.get("selectedCert");
     
         },
@@ -225,6 +226,9 @@
             }
         },
         methods: {
+            getactive() {
+                this.textshow = arguments[0];
+            },
             search() {
     
             },
@@ -235,7 +239,20 @@
             },
             onError: function(e) {
                 alert('Failed to copy texts')
+            },
+            downloadfile() {
+                if (this.textshow == "raw") {
+                    var file = new File([this.copyContent], "certificate.json", { type: "text/json;charset=utf-8" });
+                    filesaver.saveAs(file);
+                } else if (this.textshow == "pem")  {
+                     var file = new File([this.copyContent], "certificate.crt", { type: "application/x-x509-ca-cert;charset=utf-8" });
+                     filesaver.saveAs(file);
+                } 
             }
+
+
+                
+                
         },
         components: {
     

@@ -4,9 +4,22 @@
     <Row type="flex" align="top" justify="start" style="margin-top:0em;background-color:;">
   
       <Col span="15" align="left" style="margin-top:0em;margin-bottom:0em;background-color:;" offset="0">
+      <div class="parent">
+        <d3-network :net-nodes="nodes" :net-links="links" :options="options" />
   
-      <d3-network :link-cb="lcb" :net-nodes="nodes" :net-links="links" :options="options" />
   
+        <div v-if="loading" class="mask">
+  
+          <Row type="flex" align="top" justify="center" style="margin-top:20em;background-color:;">
+            <Col span="18" align="center" style="margin-top:0em;margin-bottom:0em;background-color:;" offset="0">
+  
+            <Spinner name="line-scale-pulse-out" width="100" height="100" color="#ce3d31" />
+  
+            </Col>
+          </Row>
+  
+        </div>
+      </div>
   
       </Col>
   
@@ -24,24 +37,26 @@
             </Col>
           </Row>
   
- 
   
-            <Row type="flex" align="middle" justify="start" style="margin-top:1em;">
-            <Col span="10" align="right" style="margin-bottom:0em" offset="1">
-             <p class="brands"><awe-icon name="brands/firefox"  scale="0.9" ></awe-icon>&nbsp;Mozilla NSS</p>
+  
+          <Row type="flex" align="middle" justify="start" style="margin-top:1em;">
+            <Col span="10" align="right" style="margin-bottom:0em" offset="0">
+            <p class="brands">
+              <awe-icon name="brands/firefox" scale="0.9"></awe-icon>&nbsp;Mozilla Nss</p>
             </Col>
-            <Col span="12" align="left" style="margin-bottom:0em" offset="0">
-
-             <p class="trust">&nbsp;&nbsp; <awe-icon name="lock" scale="1" color="green"> </awe-icon> &nbsp;Trusted</p>
+            <Col span="12" align="left" style="margin-bottom:0em" offset="1">
+  
+            <p class="trust">&nbsp;&nbsp;
+              <awe-icon name="lock" scale="1" color="green"> </awe-icon> &nbsp;Trusted</p>
             </Col>
           </Row>
-
+  
         </Card>
         </Col>
       </Row>
-
-
-       <Row type="flex" align="top" justify="start" style="margin-top:5em;">
+  
+  
+      <Row type="flex" align="top" justify="start" style="margin-top:5em;">
         <Col span="24" align="center" style="margin-top:1em;margin-bottom:0em" offset="0">
         <Card class="smmary" style="width:100%">
           <Row type="flex" align="top" justify="start" style="margin-top:0em;">
@@ -60,7 +75,7 @@
   
                   <Row v-for="(cert, cindex) in item" :key="cindex" :name="''+cindex" type="flex" justify="start" align="bottom" style="margin-top:0em;margin-left:0.8em;">
                     <Col span="8" align="right" style="margin-top:0.2em;" offset="0">
-                    <p style="font-size:1em;font-weight:bolder"> {{cert.id}}</p>
+                    <p style="font-size:1em;font-weight:bolder">{{getCertId(cert.id)}}</p>
   
                     </Col>
                     <Col span="15" align="left" style="margin-left:1.1em;" offset="1">
@@ -102,115 +117,9 @@
       return {
         t1: '探寻和分析',
         value2: "0",
-        pathlist: [
-          [{
-              id: "0b02ea7c...d57ed3c9",
-              name: "Apple"
-  
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-  
-              name: '	StartCom Class 1 DV Server CA'
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-  
-              name: 'StartCom Certification Authority',
-  
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-  
-              name: 'zzStartCom Certification Authority G2'
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-              name: 'www.ajsmarketing.com'
-            }
-          ],
-          [{
-              id: "0b02ea7c...d57ed3c9",
-              name: "Apple"
-  
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-  
-              name: '	StartCom Class 1 DV Server CA'
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-  
-              name: 'StartCom Certification Authority',
-  
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-  
-              name: 'zzStartCom Certification Authority G2'
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-              name: 'www.ajsmarketing.com'
-            }
-          ]
-  
-        ],
-  
-        nodes: [{
-            id: 1,
-            name: 'Apple',
-            _size: 50,
-            _color: "red"
-          },
-          {
-            id: 2,
-            _size: 30,
-            name: '	StartCom Class 1 DV Server CA'
-          },
-          {
-            id: 3,
-            _size: 40,
-            name: 'StartCom Certification Authority',
-  
-          },
-          {
-            id: 4,
-            _size: 40,
-            name: 'zzStartCom Certification Authority G2'
-          },
-          {
-            id: 5,
-            name: 'www.ajsmarketing.com'
-          }
-        ],
-        links: [{
-            sid: 1,
-            tid: 3,
-            _color: 'ce3d31',
-          },
-          {
-            sid: 1,
-            tid: 4,
-            _color: 'ce3d31'
-          },
-          {
-            sid: 3,
-            tid: 4,
-            _color: 'ce3d31'
-          },
-          {
-            sid: 3,
-            tid: 2,
-            _color: 'ce3d31'
-          },
-          {
-            sid: 2,
-            tid: 5,
-            _color: 'ce3d31'
-          }
-        ],
+        pathlist: [],
+        nodes: [],
+        links: [],
         options: {
           force: 9000,
           nodeSize: 20,
@@ -302,31 +211,62 @@
   
     },
     mounted() {
-      // this.$toast.info('正在加载', 'Info', {
-      //         position: 'topCenter',
-      //         timeout:3000,
-      //       });
-      //   new Promise(resolve => {
-      //     setTimeout(() => {
+      this.cert = this.$ls.get("selectedCert");
   
-      //       this.$toast.success('加载成功', 'Info', {
-      //         position: 'topCenter',
-      //       });
-      //       this.loading=false;
   
-      //     }, 3000);
-      //   });
+      this.$Loading.start();
+      this.$request.get('/api/v1/getpath?id=' + this.cert._id.$oid + "&root_store=Mozilla NSS")
+        .then((response) => {
+          let state = response.data.state;
+          if (state) {
+  
+            //this.$toast.success('检索到' + response.data.total + "条数据", 'Info', this.notificationSystem.options.info);
+            this.$Loading.finish();
+            this.links = response.data.links
+            this.nodes = response.data.nodes
+            this.pathlist = response.data.paths
+  
+            console.log("reponse", response.data)
+            // this.results = this.results.concat(response.data.data);
+            // console.log(this.results.length)
+            //this.total = response.data.total
+            //return response
+  
+          } else {
+  
+            this.$toast.success('未检索到更多数据!', 'Info', this.notificationSystem.options.info);
+            this.$Loading.finish();
+          }
+        }).catch((error) => {
+          console.log(error);
+          this.$Loading.error();
+          this.$Message.error('服务器繁忙');
+        });
+  
+      //a.map(function (x) {x.call=3;return x});
+  
     },
     methods: {
       search() {
   
       },
-      lcb(link) {
-        link._svgAttrs = {
-          'marker-end': 'url(#m-end)',
-          'marker-start': 'url(#m-start)'
+      getCertId(id) {
+          if (id.length > 14){
+            return id.substr(0,7) + "....." + id.substr(id.length-7);
+          } else {
+            return id
+          }
+
+      }
+  
+    },
+    computed: {
+      loading() {
+        if (this.nodes.length == 0) {
+          return true
+        } else {
+          return false
         }
-        return link
       }
     },
     components: {
@@ -338,19 +278,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .link {}
-  
-  
-  /* .backgroundac {
-                          transition: all ease-in-out 0.6s;
-                          filter: blur(15px);
-                        }
-                        
-                        .backgroundacde {
-                          filter: blur(0px);
-                          transition: all ease-in-out 0.6s;
-                        } */
-  
   pre {
     white-space: pre-wrap;
     white-space: -moz-pre-wrap;
@@ -374,7 +301,6 @@
     opacity: 0.8;
     font-size: 1.2em;
     user-select: none;
-   
     text-shadow: black 0.1em 0.1em 2em;
   }
   

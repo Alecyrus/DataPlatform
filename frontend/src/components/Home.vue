@@ -73,7 +73,7 @@
                 <Row type="flex" align="middle" justify="start" style="margin-top:1em;margin-bottom:5em">
                   <Col span="12" align="left">
                   <p style="font-size:1.4em;"><i><strong>SpringX</strong></i> 是一个互联网公钥基础设施信息检索系统。
-                    <br>系统对整个互联网(目前主要针对中国)的互联网公钥基础设施(Public Key Infrastructure)信息进行了全面的收集维护。<br>为研究者和普通用户提供信息检索和数据分析服务.</p>
+                    <br>系统对整个互联网(目前主要针对中国)的互联网公钥基础设施(Public Key Infrastructure)信息进行了全面的收集维护。</p>
                   </Col>
                 </Row>
   
@@ -81,31 +81,7 @@
                 </Col>
               </Row>
             </CarouselItem>
-            <CarouselItem>
-              <Row type="flex" align="middle" justify="start" style="margin-top:1em;">
-                <Col span="6" align="center" offset="6">
-                <Icon size="160" type="cube"></Icon>
-                </Col>
-  
-                <Col span="12" align="center">
-  
-                <Row type="flex" align="middle" justify="start" style="margin-top:4em;">
-                  <Col span="8" align="left">
-                  <p style="font-size:2.8em;"><i><strong>SpringX </strong></i>的能力 </p>
-                  </Col>
-                </Row>
-  
-                <Row type="flex" align="middle" justify="start" style="margin-top:1em;margin-bottom:5em">
-                  <Col span="12" align="left">
-                  <p style="font-size:1.4em;"><i><strong>SpringX</strong></i> 是一个互联网公钥基础设施信息检索系统。
-                    <br>系统对整个互联网(目前主要针对中国)的互联网公钥基础设施(Public Key Infrastructure)信息进行了全面的收集维护。<br>为研究者和普通用户提供信息检索和数据分析服务.</p>
-                  </Col>
-                </Row>
-  
-  
-                </Col>
-              </Row>
-            </CarouselItem>
+           
           </Carousel>
   
   
@@ -171,7 +147,7 @@
   .desc {
     background-color: #fff;
     opacity: 0.6;
-    margin: 12em 0.8em 0em 0.8em;
+    margin: 12em 4em 0em 4em;
     border-radius: 4px;
   }
 </style>

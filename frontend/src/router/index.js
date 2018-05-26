@@ -14,8 +14,13 @@ import GoogleCT from '@/components/GoogleCT'
 import MozillaNss from '@/components/MozillaNss'
 import RawData from '@/components/RawData'
 import CertifiAu from '@/components/CertifiAu'
-
-
+import Sameseri from '@/components/Sameseri'
+import Samepk from '@/components/Samepk'
+import Samecn from '@/components/Samecn'
+import Domains from '@/components/Domains'
+import Ipv4 from '@/components/Ipv4'
+import Analysis from '@/components/Analysis'
+import About from '@/components/About'
 
 Vue.use(Router)
 
@@ -33,6 +38,14 @@ export default new Router({
         {
           path: 'reports',
           component: Reports
+        },
+        {
+          path: 'about',
+          component: About
+        },
+        {
+          path: 'analysis',
+          component: Analysis
         },
         {
           path:'results',
@@ -81,6 +94,26 @@ export default new Router({
             {
               path: 'certifiau', 
               component:CertifiAu,
+            },
+            {
+              path: 'sameseri', 
+              component:Sameseri,
+            },
+            {
+              path: 'samepk', 
+              component:Samepk,
+            },
+            {
+              path: 'samecn', 
+              component:Samecn,
+            },
+            {
+              path: 'ipv4', 
+              component:Ipv4,
+            },
+            {
+              path: 'domains', 
+              component:Domains,
             },
           ]
         }

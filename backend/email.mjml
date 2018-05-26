@@ -1,0 +1,68 @@
+<mjml>
+  <mj-head>
+    <mj-title>Hello world</mj-title>
+    <mj-font name="Roboto" href="https://fonts.googleapis.com/css?family=Roboto:300,500"></mj-font>
+    <mj-attributes>
+      <mj-all font-family="Roboto, Helvetica, sans-serif"></mj-all>
+      <mj-text font-weight="300" font-size="16px" color="#616161" line-height="24px"></mj-text>
+      <mj-section padding="0px"></mj-section>
+       <mj-class name="open-sans-button" font-family="Open Sans, Arial, sans-serif" background-color="#111111" color="#ffffff" height="30px" text-transform="uppercase" font-size="16px" text-decoration="none"></mj-class>
+      <mj-class name="footer-text" font-family="Open Sans, Arial, sans-serif" color="#111111" font-size="10px" line-height="14px"></mj-class>
+      <mj-class name="body-text" font-family="Open Sans, Arial, sans-serif" color="#111111" font-size="16px" line-height="26px" align="center"></mj-class>
+      <mj-class name="headline-text" font-family="Big Caslon, Garamond, Times, serif" color="#111111" font-size="40px" line-height="36px" align="center" text-transform=""></mj-class>
+    </mj-attributes>
+  </mj-head>
+  <mj-body>
+
+     <mj-section padding="30px 0 20px">
+        <mj-column>
+          <mj-text mj-class="headline-text"> Welcome to SpringX</mj-text>
+        </mj-column>
+      </mj-section>
+     
+    </mj-section>
+    <mj-section>
+      <mj-column width="100%">
+        <mj-image href="https://recast.ai?ref=newsletter" src="https://cdn.recast.ai/newsletter/city-01.png"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column width="100%">
+        <mj-text align="center">Your access key is here!</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column width="45%">
+        <mj-text align="center" font-weight="500" padding="0px" font-size="18px">[key]</mj-text>
+        <mj-divider border-width="2px" border-color="#616161"></mj-divider>
+        <mj-divider border-width="2px" border-color="#616161" width="45%"></mj-divider>
+      </mj-column>
+    </mj-section>
+    <mj-section padding-top="30px">
+      <mj-column width="100%">
+        <mj-text>
+          <p>Hello!</p>
+          <p> We are happy to inform you have gotten full access to all advanced features on SpringX. Having fun! </p>
+          <p> And yuo need to know the access key will be expired one month later.</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+     
+      <mj-column width="100%">
+        <mj-text padding="0 25px">
+          <p style="color:#BDBDBD; line-height: 9px"> Alecyrus - <a href="https://springx.com" style="color: #3498DB;">
+              SpringX
+            </a> team </p>
+          <p style="font-style: italic; color:#BDBDBD; line-height: 9px"> HITNSLAB </p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column width="100%">
+        <mj-divider border-width="1px" border-color="#E0E0E0"></mj-divider>
+      </mj-column>
+    </mj-section>
+   
+  </mj-body>
+</mjml>

@@ -75,7 +75,7 @@
   
                   <Row v-for="(cert, cindex) in item" :key="cindex" :name="''+cindex" type="flex" justify="start" align="bottom" style="margin-top:0em;margin-left:0.8em;">
                     <Col span="8" align="right" style="margin-top:0.2em;" offset="0">
-                    <p style="font-size:1em;font-weight:bolder"> {{cert.id}}</p>
+                    <p style="font-size:1em;font-weight:bolder">{{getCertId(cert.id)}}</p>
   
                     </Col>
                     <Col span="15" align="left" style="margin-left:1.1em;" offset="1">
@@ -117,62 +117,7 @@
       return {
         t1: '探寻和分析',
         value2: "0",
-        pathlist: [
-          [{
-              id: "0b02ea7c...d57ed3c9",
-              name: "Apple"
-  
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-  
-              name: '	StartCom Class 1 DV Server CA'
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-  
-              name: 'StartCom Certification Authority',
-  
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-  
-              name: 'zzStartCom Certification Authority G2'
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-              name: 'www.ajsmarketing.com'
-            }
-          ],
-          [{
-              id: "0b02ea7c...d57ed3c9",
-              name: "Apple"
-  
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-  
-              name: '	StartCom Class 1 DV Server CA'
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-  
-              name: 'StartCom Certification Authority',
-  
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-  
-              name: 'zzStartCom Certification Authority G2'
-            },
-            {
-              id: "0b02ea7c...d57ed3c9",
-              name: 'www.ajsmarketing.com'
-            }
-          ]
-  
-        ],
-  
+        pathlist: [],
         nodes: [],
         links: [],
         options: {
@@ -279,6 +224,7 @@
             this.$Loading.finish();
             this.links = response.data.links
             this.nodes = response.data.nodes
+            this.pathlist = response.data.paths
   
             console.log("reponse", response.data)
             // this.results = this.results.concat(response.data.data);
@@ -304,6 +250,14 @@
       search() {
   
       },
+      getCertId(id) {
+          if (id.length > 14){
+            return id.substr(0,7) + "....." + id.substr(id.length-7);
+          } else {
+            return id
+          }
+
+      }
   
     },
     computed: {
